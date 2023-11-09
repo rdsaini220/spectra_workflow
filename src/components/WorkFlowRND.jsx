@@ -5,7 +5,7 @@ const style = {
   display: "flex",
   flexDirection:'column',
   alignItems: "center",
-  justifyContent: "center",
+  justifyContent: "end",
   border: "solid 2px #ddd",
   background: "#fff",
   overflow:'hidden',
