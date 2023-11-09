@@ -1,0 +1,85 @@
+.icon-img{
+    width: 24px;
+    height: 24px;
+}
+.w-250{
+    max-width: 250px !important;
+}
+.icon-btn{
+    /* border-radius: 50% !important; */
+    width: 30px;
+    height: 30px;
+    padding: 6px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    line-height: 0 !important;
+}
+.icon-btn img{
+    margin-top: -1px;
+    width: 100%;
+}
+/* HIDE RADIO */
+[type=radio] { 
+    position: absolute;
+    opacity: 0;
+  }
+
+/* IMAGE STYLES */
+[type=radio] + img {
+    position: relative;
+    cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + img {
+    outline: 2px solid #f00;
+}
+
+.step-cards{
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.layout-card{
+    cursor: pointer;
+}
+.layout-card.acitve{
+    border: dashed 2px #f00;
+}
+.preview{
+    border: dashed 1px #ccc;
+    text-align: center;
+    text-transform: capitalize;
+    padding: 4px;
+    width: 85%;
+    margin-bottom: 1rem;
+}
+
+.preview.active{
+    border: dashed 2px #f00;
+}
+
+.preview-icon{
+    width: 15%;
+}
+
+.preview-icon {
+    margin-bottom: 1rem;
+}
+
+.preview-icon .preview-icon-img{
+    padding: 3px 4px;
+    border: dashed 1px #ccc;
+    width: 28px;
+    margin: auto;
+}
+
+.preview-icon.active .preview-icon-img{
+    border: dashed 2px #f00;
+}
+
+.message-icon-img{
+    width: 20px;
+}
