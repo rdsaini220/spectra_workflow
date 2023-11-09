@@ -5,8 +5,7 @@ import WorkflowPage from "./pages/WorkflowPage";
 
 function App() {
   return (<Routes>
-    <Route path="/" element={<HomePage />} />
-    <Route path="/workflow" element={<WorkflowPage />} />
+    <Route path="/" element={<WorkflowPage />} />
  </Routes>
  )
 }
