@@ -671,13 +671,17 @@ const WorkflowPage = () => {
                           <div className="col-6">
                               <button className='btn btn-primary mt-3' onClick={() => hendleLayoutSave()}>{ activeLayout !== null ? 'Update' : 'Save'} Layout</button>
                           </div>
-                          {
-                            activeLayout !== null ? 
-                              <div className="col-6 d-flex justify-content-end">
-                                  <Link to={`/step/${activeLayout}/charts`} className='btn btn-primary mt-3'>Next</Link>
+                          <div className="col-6 d-flex justify-content-end">
+                              <div>
+                                  <Link to={`/setpflow`} className='btn btn-outline-primary mt-3 me-3'>Setpflow</Link>
+                                  <Link to={`/flow`} className='btn btn-outline-primary mt-3'>Flow</Link>
                               </div>
-                            : null
-                          }
+                              {
+                                activeLayout !== null ? 
+                                      <Link to={`/step/${activeLayout}/charts`} className='btn btn-primary mt-3'>Next</Link>
+                                : null
+                              }
+                          </div>
                         </>
                       : null
 
