@@ -1,0 +1,29 @@
+.selected{
+    border: dashed 1px red;
+}
+.cloud-icon{
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.diagram-view-item{
+    position: relative;
+    margin-right: 3rem;
+}
+.diagram-view-item::after{
+    content: "";
+    position: absolute;
+    width: 3rem;
+    height: 2px;
+    background: #ccc;
+    left: 100%;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+.diagram-view-item:last-child{
+    margin-right: 0;
+}
+.diagram-view-item:last-child::after{
+    display: none;
+}

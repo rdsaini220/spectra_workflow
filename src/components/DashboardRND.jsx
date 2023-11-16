@@ -5,13 +5,14 @@ const style = {
   display: "flex",
   flexDirection:'column',
   alignItems: "center",
-  justifyContent: "end",
+  justifyContent: "center",
   border: "solid 2px #ddd",
   background: "#fff",
   overflow:'hidden',
   objectFit:'cover',
   borderRadius:'0',
   position:'relative',
+  minHeight:'30px',
 };
 
 
@@ -61,16 +62,10 @@ function WorkFlowRND({ boundaryElm, RND, Id, SetRND, activeCard, setActiveCard, 
       onDragStop={changePosition}
       onResizeStop={changeSize}
       onClick={() => handleFocus(Id)}
-      title={RND?.data?.workflowName}
-      className="dnd-card"
+      title={RND?.workflowName}
     >
       <input value={Id} onFocus={(e) => handleFocus(e.target.value)} style={{height:'100%', width:"100%"}} hidden/>
-      {
-        RND?.icon ? 
-          <img src={RND?.icon} alt="" style={{ width: `100%`, height: `100%` }} />
-        : null
-      }
-      <span>{RND?.data?.workflowName}</span>
+      <span style={{fontSize:'14px',lineHeight:'16px'}}>{RND?.title}</span>
     </Rnd>
   );
 }

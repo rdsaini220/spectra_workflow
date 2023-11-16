@@ -21,19 +21,19 @@
     width: 100%;
 }
 /* HIDE RADIO */
-[type=radio] { 
+.dnd-card [type=radio] { 
     position: absolute;
     opacity: 0;
   }
 
 /* IMAGE STYLES */
-[type=radio] + img {
+.dnd-card [type=radio] + img {
     position: relative;
     cursor: pointer;
 }
 
 /* CHECKED STYLES */
-[type=radio]:checked + img {
+.dnd-card [type=radio]:checked + img {
     outline: 2px solid #f00;
 }
 
