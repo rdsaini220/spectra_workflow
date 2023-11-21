@@ -23,28 +23,271 @@ import squareIcon from "../assets/icons/square.svg";
 import "../styles/workflowPage.css";
 import "../styles/StepsPage.css";
 
-const chartList = [
+const itineraryList = [
   { 
-    width: 100, 
-    height: 30, 
-    x: 10, 
-    y: 10, 
-    bg:'', 
-    title:'type 1',
-    // cardType:'rounded',
-    isedit:true,
+    id:'i1',
+    title:'Incident Manager',
+    cards:[
+     {
+        name:'Trans card',
+        data: [{
+          width: 300, 
+          height: 50, 
+          x: 40, 
+          y: 15, 
+          name:'IM 1', 
+        },
+        {
+          width: 300, 
+          height: 50, 
+          x: 40, 
+          y: 80, 
+          name:'IM 2', 
+        },
+        {
+          width: 300, 
+          height: 50, 
+          x: 40, 
+          y: 140, 
+          name:'IM 3', 
+        },
+        {
+          width: 300, 
+          height: 50, 
+          x: 40, 
+          y: 205, 
+          name:'IM 4', 
+        },]
+     },
+     {
+      name:'Set Card',
+      data: [
+        {
+          width: 300, 
+          height: 50, 
+          x: 40, 
+          y: 15, 
+          name:'IMS 1', 
+        },
+        {
+          width: 300, 
+          height: 50, 
+          x: 40, 
+          y: 80, 
+          name:'IMS 2', 
+        },
+        {
+          width: 300, 
+          height: 50, 
+          x: 40, 
+          y: 140, 
+          name:'IMS 3', 
+        },
+        {
+          width: 300, 
+          height: 50, 
+          x: 40, 
+          y: 205, 
+          name:'IMS 4', 
+        },
+      ]
+   }
+    ],
   },
   { 
-    width: 100, 
-    height: 30, 
-    x: 10, 
-    y: 10, 
-    icon: NoCodeIcon, 
-    bg:'', 
-    title:'type 2',
-    // cardType:'rounded',
-    isedit:true,
+    id:'i2',
+    title:'Maintienance engineer',
+    cards:[
+      {
+         name:'Maintienance card',
+         data: [
+          {
+            width: 300, 
+            height: 100, 
+            x: 40, 
+            y: 15, 
+            name:'ME 1', 
+          },
+          {
+            width: 300, 
+            height: 100, 
+            x: 40, 
+            y: 130, 
+            name:'ME 2', 
+          },
+          {
+            width: 300, 
+            height: 100, 
+            x: 40, 
+            y: 240, 
+            name:'ME 3', 
+          },
+          {
+            width: 300, 
+            height: 100, 
+            x: 40, 
+            y: 350, 
+            name:'ME 4', 
+          }
+        ]
+      }
+     ],
   },
+  { 
+    id:'i3',
+    title:'Service engineer',
+    cards:[
+      {
+         name:'Service card',
+         data: [
+          {
+            width: 300, 
+            height: 50, 
+            x: 40, 
+            y: 15, 
+            name:'SE 1', 
+          },
+          {
+            width: 300, 
+            height: 50, 
+            x: 40, 
+            y: 80, 
+            name:'SE 2', 
+          },
+          {
+            width: 300, 
+            height: 50, 
+            x: 40, 
+            y: 140, 
+            name:'SE 3', 
+          },
+          {
+            width: 300, 
+            height: 50, 
+            x: 40, 
+            y: 205, 
+            name:'SE 4', 
+          }
+        ]
+      }
+     ],
+  },
+  { 
+    id:'i4',
+    title:'Operations Manager',
+    cards:[
+      {
+         name:'Manager card',
+         data: [
+          {
+            width: 300, 
+            height: 50, 
+            x: 40, 
+            y: 15, 
+            name:'MC 1', 
+          },
+          {
+            width: 300, 
+            height: 50, 
+            x: 40, 
+            y: 80, 
+            name:'MC 2', 
+          },
+          {
+            width: 300, 
+            height: 50, 
+            x: 40, 
+            y: 140, 
+            name:'MC 3', 
+          },
+          {
+            width: 300, 
+            height: 50, 
+            x: 40, 
+            y: 205, 
+            name:'MC 4', 
+          }
+        ]
+      }
+     ],
+  },
+  { 
+    id:'i5',
+    title:'Operation Field engineer',
+    cards:[
+      {
+         name:'Operation card',
+         data: [
+          {
+            width: 300, 
+            height: 50, 
+            x: 40, 
+            y: 15, 
+            name:'OC 1', 
+          },
+          {
+            width: 300, 
+            height: 50, 
+            x: 40, 
+            y: 80, 
+            name:'OC 2', 
+          },
+          {
+            width: 300, 
+            height: 50, 
+            x: 40, 
+            y: 140, 
+            name:'OC 3', 
+          },
+          {
+            width: 300, 
+            height: 50, 
+            x: 40, 
+            y: 205, 
+            name:'OC 4', 
+          }
+        ]
+      }
+     ],
+  },
+]
+
+const dataList = [
+  {
+    width: 300, 
+    height: 50, 
+    x: 20, 
+    y: 5, 
+    name:'Message', 
+  },
+  {
+    width: 300, 
+    height: 50, 
+    x: 20, 
+    y: 5,
+    name:'Call', 
+  },
+  {
+    width: 300, 
+    height: 50, 
+    x: 20, 
+    y: 5, 
+    name:'Route Map/ETA', 
+  },
+  {
+    width: 300, 
+    height: 50, 
+    x: 20, 
+    y: 5, 
+    name:'Mail', 
+  },
+  {
+    width: 300, 
+    height: 50, 
+    x: 20, 
+    y: 5,
+    name:'CRM Integration', 
+  }
 ]
 
 const dashboardList = [
@@ -136,9 +379,12 @@ const getIconImg = (cardType) => {
 }
 
 const DashboardPage = () => {
+  const [charts, setCharts] = useState([])
+  const [chartsItem, setChartsItem] = useState({})
+  const [chartSelected, setChartSelected] = useState({})
+  const [chartsData, setChartData] = useState([])
   const [workflowList, setWorkflowList] = useState([])
   const [boundaryElm, setBoundaryElm] = useState()
-  const [charts, setCharts] = useState([])
   const [cards, setCards] = useState([])
   const [activeCard, setActiveCard] = useState(null)
   const [priView, setPriView] = useState(null)
@@ -154,12 +400,6 @@ const DashboardPage = () => {
         return item;
       });
     });
-    // // Create a copy of the original array
-    // const updatedItems = [...cards];
-    // // Update the object with the new name
-    // updatedItems[index] = {x: d.x, y: d.y};
-    // // Update the state with the modified array
-    // setCards(updatedItems);
   }
 
   const isFillData = (dataList=[]) => {
@@ -174,10 +414,14 @@ const DashboardPage = () => {
   }
 
   useEffect(() => {
-    const dataLS = [...chartList]
+    const dataLS = [...itineraryList]
     const layoutDataListLS = localStore.load('dashboardData')
     if(dataLS){
       setCharts(dataLS)
+    }
+    const dl = [...dataList]
+    if(dl){
+      setChartData(dl)
     }
     if(layoutDataListLS){
       setWorkflowList(layoutDataListLS)
@@ -207,14 +451,61 @@ const DashboardPage = () => {
     alert('save successfully')
   }
 
-  // useEffect(() => {
-  //   if(cards){
+  const hangleChartSelected = (item) => {
+    setChartSelected(item)
+    setChartsItem({})
+    setCards([])
+  }
 
-  //   }
-  // }, [cards])
+  const hangleChartSelectedDataCard = (item) => {
+    const itemdata = [...item?.data] 
+    setChartsItem(item)
+    setCards(itemdata)
+  }
 
   const addNewCard = (item) => {
-    setCards([...cards, item])
+    const itemdata = [...cards, item] 
+    setCards(itemdata)
+  }
+
+  const handleSave = () => {
+    if(Object.keys(chartSelected).length){
+      const cardsData = [...cards]
+      let updatedChartSelected = {...chartSelected}
+      let updatedCards = []
+      if(Object.keys(chartsItem).length){
+        updatedCards =  updatedChartSelected?.cards.map((item, i) => {
+          if (item.name === chartsItem.name) {
+            return { ...item, data: cardsData };
+          }
+          return item;
+        })
+      }else{
+        updatedCards = [...updatedChartSelected?.cards, {
+          name:`New card ${updatedChartSelected?.cards?.length + 1}`,
+          data: cardsData,
+        }]
+      }
+      updatedChartSelected.cards = updatedCards
+      setChartSelected(updatedChartSelected)
+      setCharts(prevCards => {
+        return prevCards.map((item, i) => {
+          if(item.id === updatedChartSelected.id) {
+            return {...updatedChartSelected};
+          }
+          return item;
+        });
+      });
+      if(Object.keys(chartsItem).length === 0){
+          setCards([])
+      }
+    }
+  }  
+
+  const removeCard = () => {
+    const updatedCards = [...cards];
+    updatedCards.splice(activeCard, 1);
+    setCards(updatedCards);
   }
 
   const handleImageChange = (e) => {
@@ -233,8 +524,7 @@ const DashboardPage = () => {
       };
       reader.readAsDataURL(file);
     }
-  };
-
+  }
   const handleTypeCard = (value) => {
     setCards(prevCards => {
       return prevCards.map((item, i) => {
@@ -254,11 +544,6 @@ const DashboardPage = () => {
         return item;
       });
     });
-  }
-  const handleRemove = () => {
-    const updatedCards = [...cards];
-    updatedCards.splice(activeCard, 1);
-    setCards(updatedCards);
   }
   const handleCreateSteps = () => {
     setCards(prevCards => {
@@ -291,8 +576,7 @@ const DashboardPage = () => {
         return item;
       });
     });
-  }
-  
+  }  
   const handleWorkflowName = (value) => {
     setCards(prevCards => {
       return prevCards.map((item, i) => {
@@ -306,7 +590,6 @@ const DashboardPage = () => {
       });
     });
   }
-
   const handleWorkflowStepName = (value, indexNo) => {
     const updatedData = { ...cards[activeCard]?.data };
     updatedData.steps[indexNo].name = value;
@@ -331,16 +614,6 @@ const DashboardPage = () => {
       });
     });
   }
-  const handleSubmit = event => {
-    event.preventDefault();
-    alert('Successfully Save')
-    // const updatedData = { ...cards[activeCard] };
-    // if(updatedData){
-    //   setWorkflowList([...workflowList, { name:'workflow', data: updatedData}])
-    //   handleRemove()
-    //   setActiveCard(null)
-    // }
-  };
   const handelLayoutPreView = (item, ind) => {
     const datalist = [...item?.list]
     console.log(item?.list, 'item?.list')
@@ -349,31 +622,7 @@ const DashboardPage = () => {
     setPreviewMode(true)
     setActiveCard(null)
     setPriView('')
-  };
-
-  // const handelPalyPreview = item => {
-  //    // Start with the first step (index 0)
-  //    setActiveStepIndex(0);
-     
-  //   //  let regexPattern = /^-?[0-9]+$/;
-    
-  //   //  // check if the passed number is integer or float
-  //   //  let result = regexPattern.test(x);
-
-  //    // Use setInterval to change the active step every 2 seconds
-  //    const intervalId = setInterval(() => {
-  //      setActiveStepIndex((prevIndex) => {
-  //        const nextIndex = prevIndex + 1;
-  //        // If you reached the end of the steps, stop the interval
-  //        if (nextIndex >= cards[priView]?.data?.steps.length) {
-  //          clearInterval(intervalId);
-  //        }
-  //        return nextIndex;
-  //      });
-  //    }, 2000);
-  // };
-
-
+  }
   const handelPalyPreview = (item) => {
     // Start with the first step (index 0)
     setActiveStepIndex(0);
@@ -397,9 +646,8 @@ const DashboardPage = () => {
         return nextIndex;
       });
     }, 2000);
-  };
-
-    // Function to show a modal for checkbox steps
+  }
+  // Function to show a modal for checkbox steps
   const showCheckboxModal = (step, stepIndex) => {
     // Display a modal with confirm and cancel buttons
     var result = confirm("Press a button!");
@@ -410,109 +658,32 @@ const DashboardPage = () => {
       setActiveStepIndex(stepIndex + 1);
       handelPalyPreview()
     }
-  };
-
+  }
   return (
     <>
       <section>
-        <div className="container-fluid">
-          {/* <div className="row my-3">
-             <div className="col-lg-7">
-                <div className="row align-items-center">
-                  <div className="col-lg-7">
-                      {
-                        cards.length !== 0 && activeCard !== null ? 
-                          <div className="action d-flex justify-content-start align-items-center">
-                            <input className="form-control w-250 me-2" type="file" accept="image/*" onChange={handleImageChange} />
-                            {
-                              cards.length > 0 == !cards[activeCard]?.icon ? 
-                                <input type="color" className="form-control form-control-color me-2" onChange={(e) => handleBgChange(e.target.value)} value={ cards[activeCard]?.bg ? cards[activeCard]?.bg : "#fff"} />
-                              : null
-                            }
-                            <button onClick={() => handleTypeCard('none')} className="btn btn-primary rounded-0 icon-btn me-2" title={'Square Box'} >
-                                <img className='img-fluid' src={squareIcon} alt="" />
-                            </button>
-                            <button onClick={() => handleTypeCard('rounded')} className="btn btn-primary icon-btn me-2" title={'Rounded Box'}>
-                                <img className='img-fluid' src={roundedIcon} alt="" /> 
-                            </button>
-                            <button onClick={() => handleTypeCard('circle')} className="btn btn-primary rounded-circle icon-btn me-2" title={'Circle'} >
-                              <img className='img-fluid' src={circleIcon} alt="" /> 
-                            </button>
-                          </div>
-                        : null
-                      }
-                  </div>
-                  <div className="col-lg-5 text-end">
-                   <div>
-                        {
-                          activeLayout !== null ? 
-                            <button onClick={() => {
-                              setActiveLayout(null)
-                              setCards([])
-                              setPreviewMode(!previewMode)
-                            }} className="btn btn-danger me-3 icon-btn" title="clear">
-                              <img className='img-fluid' src={clearIcon} alt="" />
-                            </button>
-                          : null
-                        }
-                        {
-                          cards?.length !== 0 && activeCard !== null ? 
-                            <button onClick={() => handleRemove()} className="btn btn-danger icon-btn me-3">
-                              <img className='img-fluid' src={removeIcon} alt="" />
-                            </button>
-                          : null
-                        }
-                        {
-                          activeLayout !== null ? 
-                            <button onClick={() => { 
-                              setPreviewMode(!previewMode)
-                              setActiveCard(null) 
-                              setPriView(null) 
-                              setActiveStepIndex(-1)
-                            }} 
-                            className="btn btn-warning me-3 icon-btn" title={previewMode ? 'Edit Mode' : 'Preview Mode'}>
-                              <img className='img-fluid' src={previewMode ? editIcon : preViewIcon} alt="" />
-                            </button>
-                          : null
-                        }                      
-                        <button onClick={() => addNewCard()} className="btn btn-primary icon-btn" title="add workflow">
-                            <img className='img-fluid' src={addIcon} alt="" />  
-                        </button> 
-                       
-                   </div>
-                  </div>
-                </div>
-             </div>
-             <div className="col-lg-5">
-                {
-                  cards?.length !== 0 && activeCard !== null ?
-                    <h4 className='text-center'>Define WorkFlow</h4>
-                  : null
-
-                }
-             </div>
-          </div> */}
-          <div className="row g-2 mt-3">
-            <div className="col-lg-1">
+        <div className="container-fluid">          
+          <div className="row g-4 mt-3">
+            <div className="col-lg-2">
                <div className='preCard'>
                   {
                     charts.map((item, i) => {
                       return (
-                        <div className='border d-flex justify-content-center mb-3' key={i} onClick={() => addNewCard(item)}>
+                        <div className={`border d-flex flex-wrap justify-content-center mb-3 text-center ${item.title == chartSelected.title ? 'selected' : ''}`} key={i} onClick={() => hangleChartSelected(item)}>
                             {item?.title}
                         </div>
                       )
                     })
                   }
                </div>
-            </div>
-            <div className="col-lg-8">
+            </div>            
+            <div className="col-lg-5">                 
                 <div
                   style={{ 
                     display:'block',
                     background: "#eee",
                     width: "100%",
-                    height: "80vh",
+                    height: "70vh",
                     border:'solid 1px #ccc',
                     overflowX:'auto',
                   }}
@@ -525,6 +696,8 @@ const DashboardPage = () => {
                             boundaryElm={boundaryElm}
                             Id={ind}
                             RND={row}
+                            noOfIndex={cards.length}
+                            removeCard={removeCard}
                             SetRND={handleRND}
                             activeCard={activeCard}
                             setActiveCard={setActiveCard}
@@ -535,17 +708,51 @@ const DashboardPage = () => {
                         )
                       })
                     }
-                </div>
+                </div>   
+                {
+                    cards.length > 0 ?                     
+                      <div className='d-flex justify-content-end mt-2'>
+                        <button className='btn btn-primary' onClick={() => handleSave()}>Save</button>
+                      </div>
+                    : null
+                }             
             </div>
-            
-            {/* {
-              cards.length !== 0 ?
-                <div className="collg-12">
-                    <button className='btn btn-primary mt-3' onClick={() => hendleLayoutSave()}>{ activeLayout !== null ? 'Update' : 'Save'} Layout</button>
+            {
+               Object.keys(chartSelected).length > 0 ? <>              
+                <div className="col-lg-2">
+                  <h5 className='mb-3'>Components</h5>
+                  <div className='preCard'>
+                      {
+                        chartsData.map((item, i) => {
+                          return (
+                            <div type="button" className='border d-flex justify-content-start mb-3 text-left px-2' disabled={Object.keys(chartSelected).length === 0} key={i} onClick={() => addNewCard(item)}>
+                                {item?.name}
+                            </div>
+                          )
+                        })
+                      }
+                  </div>
                 </div>
-              : null
-
-            } */}
+                <div className="col-lg-3">
+                  <div className='row preCard'>
+                      <div className="col-12">
+                          <h5 className='mb-3'>Layouts</h5>
+                      </div>
+                      {
+                        Object.keys(chartSelected).length > 0 ? chartSelected?.cards?.map((item, i) => {
+                          return (
+                            <div className='col-lg-6'>
+                                <div className={`border d-flex justify-content-center mb-3 text-center p-4 ${item.name == chartsItem.name ? 'selected' : ''}`} key={i} onClick={() => hangleChartSelectedDataCard(item)}>
+                                    {item?.name}
+                                </div>
+                            </div>
+                          )
+                        }) : <div style={{fontSize:'12px'}}>Not Selected...</div>
+                      }
+                  </div>
+                </div>
+              </> : null
+            }
           </div>
           <div className="row mb-5 mt-5">
               <div className="col-lg-7">

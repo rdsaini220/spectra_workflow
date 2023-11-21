@@ -83,3 +83,8 @@
 .message-icon-img{
     width: 20px;
 }
+
+.nav-link.active{
+    padding-top: 0;
+    padding-bottom: 0;
+}

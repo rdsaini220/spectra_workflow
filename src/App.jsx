@@ -10,21 +10,22 @@ import StepSixPage from "./pages/StepSixPage";
 import StepSevenPage from "./pages/StepSevenPage";
 import SetpFlowPage from "./pages/SetpFlowPage";
 import SetpFlowPageCopy from "./pages/SetpFlowPageCopy";
-import DashboardPage from "./pages/SetpFlowPage";
+import SetpFlowPageTest from "./pages/SetpFlowPageTest";
+import DashboardPage from "./pages/DashboardPage";
 
 function App() {
   return (<Routes>
-    <Route path="/" element={<WorkflowPage />} />
-    <Route path="/step/:layoutId/charts" element={<StepOnePage />} />
-    <Route path="/step/:layoutId/templete" element={<StepTwoPage />} />
-    <Route path="/step/:layoutId/cloud" element={<StepThreePage />} />
-    <Route path="/step/:layoutId/alerts" element={<StepFourPage />} />
-    <Route path="/step/:layoutId/users" element={<StepFivePage />} />
-    <Route path="/step/:layoutId/diagram" element={<StepSixPage />} />
-    <Route path="/step/:layoutId/libraries" element={<StepSevenPage />} />
-    <Route path="/setpflow" element={<SetpFlowPage />} />
-    <Route path="/flow" element={<SetpFlowPageCopy />} />
-    <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/" element={<DashboardPage> <WorkflowPage /> </DashboardPage>} />
+        <Route path="/step/:layoutId/charts" element={<DashboardPage><StepOnePage /></DashboardPage> } />
+        <Route path="/step/:layoutId/templete" element={<DashboardPage><StepTwoPage /></DashboardPage>} />
+        <Route path="/step/:layoutId/cloud" element={<DashboardPage><StepThreePage /></DashboardPage>} />
+        <Route path="/step/:layoutId/alerts" element={<DashboardPage><StepFourPage /></DashboardPage>} />
+        <Route path="/step/:layoutId/users" element={<DashboardPage><StepFivePage /></DashboardPage>} />
+        <Route path="/step/:layoutId/diagram" element={<DashboardPage><StepSixPage /></DashboardPage>} />
+        <Route path="/step/:layoutId/libraries" element={<DashboardPage><StepSevenPage /></DashboardPage>} />
+        <Route path="/itinerary" element={<DashboardPage><SetpFlowPage /></DashboardPage>} />
+        <Route path="/workflow" element={<DashboardPage><SetpFlowPageCopy /></DashboardPage>} />
+        <Route path="/test" element={<DashboardPage><SetpFlowPageTest /></DashboardPage>} />
  </Routes>
  )
 }

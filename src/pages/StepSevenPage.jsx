@@ -83,7 +83,7 @@ const StepPage = () => {
                   <Link to={`/step/${layoutId}/diagram`} className='btn btn-primary mt-3'>Prev</Link>
               </div>
               <div className="col-lg-6">
-                  <Link to={`/dashboard`} className='btn btn-primary mt-3'>Next</Link>
+                  <Link to={`#`} className='btn btn-primary mt-3'>Next</Link>
               </div>
           </div>
         </div>

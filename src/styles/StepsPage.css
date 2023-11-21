@@ -1,5 +1,5 @@
 .selected{
-    border: dashed 1px red;
+    border: dashed 1px red !important;
 }
 .cloud-icon{
     height: 100px;
@@ -26,4 +26,61 @@
 }
 .diagram-view-item:last-child::after{
     display: none;
+}
+
+.close-btn{
+    position: absolute;
+    padding: 0;
+    height: 20px;
+    width: 20px;
+    top: -10px;
+    right: -10px;
+    background: #fff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    outline: none;
+    border: none;
+    background: none;
+    border: solid 1px red;
+    border-radius: 50% !important;
+}
+.add-btn{
+    top: -32px;
+    left: -28px;
+    border: solid 1px green;
+}
+
+.dropdown-menu .custom-accordion .accordion-button{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.dropdown-menu .custom-accordion .accordion-button{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.input-custom{
+    padding: 0;
+    border: none;
+}
+.input-custom:focus{
+    border: dashed 1px #000;
+}
+
+.cutom-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red !important;
+    color: #fff !important;
+    font-weight: 700;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 0 0 0 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

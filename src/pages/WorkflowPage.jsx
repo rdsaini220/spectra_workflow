@@ -452,7 +452,7 @@ const WorkflowPage = () => {
                       }
                   </div>
                   <div className="col-lg-5 text-end">
-                   <div>
+                   <div className='d-flex justify-content-end'>
                         {
                           activeLayout !== null ? 
                             <button onClick={() => {
@@ -508,7 +508,7 @@ const WorkflowPage = () => {
                     display:'block',
                     background: "#eee",
                     width: "100%",
-                    height: "80vh",
+                    height: "70vh",
                     border:'solid 1px #ccc',
                     overflowX:'auto',
                   }}
@@ -672,13 +672,9 @@ const WorkflowPage = () => {
                               <button className='btn btn-primary mt-3' onClick={() => hendleLayoutSave()}>{ activeLayout !== null ? 'Update' : 'Save'} Layout</button>
                           </div>
                           <div className="col-6 d-flex justify-content-end">
-                              <div>
-                                  <Link to={`/setpflow`} className='btn btn-outline-primary mt-3 me-3'>Setpflow</Link>
-                                  <Link to={`/flow`} className='btn btn-outline-primary mt-3'>Flow</Link>
-                              </div>
                               {
                                 activeLayout !== null ? 
-                                      <Link to={`/step/${activeLayout}/charts`} className='btn btn-primary mt-3'>Next</Link>
+                                      <Link to={`/step/${activeLayout}/charts`} className='btn btn-primary mt-3 ms-3'>Next</Link>
                                 : null
                               }
                           </div>
@@ -694,7 +690,7 @@ const WorkflowPage = () => {
                   <div className="row">
                       {
                         workflowList && workflowList.map((item, i) => {
-                          return (<div className="col-lg-2 text-center">
+                          return (<div className="col-lg-3 text-center">
                                 <div className={`layout-card bg-light py-3 ${ activeLayout === i ? 'acitve':''}`} onClick={() => handelLayoutPreView(item, i)}>
                                     <div className="layout-img">
                                         <img src={SerivcesIcon} alt="" />
