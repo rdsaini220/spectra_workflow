@@ -12,6 +12,8 @@ import SetpFlowPage from "./pages/SetpFlowPage";
 import SetpFlowPageCopy from "./pages/SetpFlowPageCopy";
 import SetpFlowPageTest from "./pages/SetpFlowPageTest";
 import DashboardPage from "./pages/DashboardPage";
+import RecipeFlowPage from "./pages/RecipeFlowPage";
+import BoydPage from "./pages/BoydPage";
 
 function App() {
   return (<Routes>
@@ -26,6 +28,8 @@ function App() {
         <Route path="/itinerary" element={<DashboardPage><SetpFlowPage /></DashboardPage>} />
         <Route path="/workflow" element={<DashboardPage><SetpFlowPageCopy /></DashboardPage>} />
         <Route path="/test" element={<DashboardPage><SetpFlowPageTest /></DashboardPage>} />
+        <Route path="/recipe" element={<DashboardPage><RecipeFlowPage /></DashboardPage>} />
+        <Route path="/boyd" element={<DashboardPage><BoydPage /></DashboardPage>} />
  </Routes>
  )
 }

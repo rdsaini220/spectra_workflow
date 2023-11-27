@@ -223,7 +223,19 @@ const WorkflowPage = () => {
   // }, [cards])
 
   const addNewCard = () => {
-    setCards([...cards, { width: 70, height: 70, x: 10, y: 10, icon: '', bg:'', cardType:'none', disableDragging: false, isedit:true, }])
+    setCards([...cards, 
+      { 
+        width: 70, 
+        height: 70, 
+        x: 10, 
+        y: 10, 
+        icon: '', 
+        bg:'', 
+        cardType:'none', 
+        disableDragging: false, 
+        isedit:true, 
+      }
+    ])
   }
 
   const handleImageChange = (e) => {
@@ -671,13 +683,13 @@ const WorkflowPage = () => {
                           <div className="col-6">
                               <button className='btn btn-primary mt-3' onClick={() => hendleLayoutSave()}>{ activeLayout !== null ? 'Update' : 'Save'} Layout</button>
                           </div>
-                          <div className="col-6 d-flex justify-content-end">
+                          {/* <div className="col-6 d-flex justify-content-end">
                               {
                                 activeLayout !== null ? 
                                       <Link to={`/step/${activeLayout}/charts`} className='btn btn-primary mt-3 ms-3'>Next</Link>
                                 : null
                               }
-                          </div>
+                          </div> */}
                         </>
                       : null
 

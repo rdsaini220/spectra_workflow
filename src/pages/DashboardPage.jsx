@@ -38,8 +38,8 @@ const DashboardPage = ({ children }) => {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="#" className={`nav-link px-0 align-middle ${pathName === '/body' ? 'active': null }`}>
-                                    <i className="fs-4 bi-table"></i> <span className="ms-1 d-none d-sm-inline text-white px-2">Body</span>
+                                <Link to="/boyd" className={`nav-link px-0 align-middle ${pathName === '/boyd' ? 'active': null }`}>
+                                    <i className="fs-4 bi-table"></i> <span className="ms-1 d-none d-sm-inline text-white px-2">BOYD</span>
                                 </Link>
                             </li>
                             <li>
@@ -48,7 +48,7 @@ const DashboardPage = ({ children }) => {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="#" className={`nav-link px-0 align-middle ${pathName === '/recipe' ? 'active': null }`}>
+                                <Link to="/recipe" className={`nav-link px-0 align-middle ${pathName === '/recipe' ? 'active': null }`}>
                                     <i className="fs-4 bi-table"></i> <span className="ms-1 d-none d-sm-inline text-white px-2">Recipe</span>
                                 </Link>
                             </li>

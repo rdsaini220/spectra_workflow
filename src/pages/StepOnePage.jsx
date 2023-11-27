@@ -5,10 +5,6 @@ import localStore from '../untils/localStore';
 
 import SaasIcon from "../assets/saas.png";
 import NoCodeIcon from "../assets/no-code.png";
-import BotIcon from "../assets/bot.png";
-import StaffIcon from "../assets/staff.png";
-import TempIcon from "../assets/temp.png";
-import ServiceIcon from "../assets/serivces.png";
 
 import "../styles/workflowPage.css";
 import "../styles/StepsPage.css";
@@ -91,10 +87,8 @@ const chartData = [
 const StepPage = () => {
   const [charts, setCharts] = useState([])
   const [chartList, setChartList] = useState([])
-  const [layoutData, setLayoutData] = useState({})
   const params = useParams();
   const { layoutId } = params;
-  console.log(layoutId, 'params')
 
   useEffect(() => {
     const dataLS = [...chartData]
@@ -112,8 +106,6 @@ const StepPage = () => {
       };
       const updatedLayoutDataListLS = [...layoutDataListLS];
       updatedLayoutDataListLS[layoutId] = updatedLayoutData;
-      localStore.add('layoutData', updatedLayoutDataListLS)
-      setLayoutData(updatedLayoutData)
     } 
   }, [chartList])
 
@@ -126,8 +118,7 @@ const StepPage = () => {
     }else{
       setChartList([...chartList, item])
     }
-  }
-  
+  } 
   return (
     <>
       <section>
@@ -153,7 +144,7 @@ const StepPage = () => {
           </div>
           <div className="row">
               <div className="col-lg-6">
-                  <Link to={`/`} className='btn btn-primary mt-3'>Prev</Link>
+                  <Link to={`/boyd`} className='btn btn-primary mt-3'>Prev</Link>
               </div>
               <div className="col-lg-6">
                   <Link to={`/step/${layoutId}/templete`} className='btn btn-primary mt-3'>Next</Link>
