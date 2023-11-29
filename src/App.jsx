@@ -10,6 +10,7 @@ import StepSixPage from "./pages/StepSixPage";
 import StepSevenPage from "./pages/StepSevenPage";
 import SetpFlowPage from "./pages/SetpFlowPage";
 import WorkflowPage from "./pages/WorkflowPage";
+import WorkflowPage2 from "./pages/WorkflowPage2";
 import SetpFlowPageTest from "./pages/SetpFlowPageTest";
 import Layout from "./pages/Layout";
 import RecipeFlowPage from "./pages/RecipeFlowPage";
@@ -23,7 +24,7 @@ function App() {
         <Route path="/step/:layoutId/cloud" element={<Layout><StepThreePage /></Layout>} />
         <Route path="/step/:layoutId/alerts" element={<Layout><StepFourPage /></Layout>} />
         <Route path="/step/:layoutId/users" element={<Layout><StepFivePage /></Layout>} />
-        <Route path="/step/:layoutId/diagram" element={<Layout><StepSixPage /></Layout>} />
+        <Route path="/step/:layoutId/diagram" element={<Layout><WorkflowPage2 /></Layout>} />
         <Route path="/step/:layoutId/libraries" element={<Layout><StepSevenPage /></Layout>} />
         <Route path="/itinerary" element={<Layout><SetpFlowPage /></Layout>} />
         <Route path="/workflow" element={<Layout><WorkflowPage /></Layout>} />
