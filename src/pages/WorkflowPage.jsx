@@ -1,725 +1,509 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom';
-import WorkFlowRND from '../components/WorkFlowRND';
+import React, { useState, useEffect } from "react";
+import Xarrow, { useXarrow, Xwrapper } from "react-xarrows";
+import Draggable from "react-draggable";
+import Accordion from 'react-bootstrap/Accordion';
+
 import localStore from '../untils/localStore';
+import AlertIcon from "../assets/alert.png";
+import MailIcon from "../assets/mail.png";
+import NotificationIcon from "../assets/notification.png";
+import SmsIcon from "../assets/sms.png";
+import WhatsappIcon from "../assets/icons/whatsapp.svg";
 
-import SaasIcon from "../assets/saas.png";
-import NoCodeIcon from "../assets/no-code.png";
-import SerivcesIcon from "../assets/serivces.png";
-import checkboxIcon from "../assets/icons/squareCheck.svg";
-import whatsappIcon from "../assets/icons/whatsapp.svg";
-import smsIcon from "../assets/icons/sms.svg";
-import emailIcon from "../assets/icons/email.svg";
-import phoneIcon from "../assets/icons/phone.svg";
-import erpIcon from "../assets/icons/erp.svg";
-import addIcon from "../assets/icons/add.svg";
-import editIcon from "../assets/icons/edit.svg";
-import removeIcon from "../assets/icons/remove.svg";
-import clearIcon from "../assets/icons/clear.svg";
-import preViewIcon from "../assets/icons/preView.svg";
-import roundedIcon from "../assets/icons/rounded.svg";
-import circleIcon from "../assets/icons/circle.svg";
-import squareIcon from "../assets/icons/square.svg";
+import "../styles/StepsPage.css";
 
-import "../styles/workflowPage.css";
+const boxStyle = {
+  position:'relative',
+  border: "grey solid 2px",
+  borderRadius: "10px",
+  height:'auto',
+  display:'inline-block',
+  border: "1px solid red", 
+  padding: "0 1rem", 
+  width: "auto",
+  height:'30px',
+};
 
-const dataList = [
+const flowData = [
   { 
-    width: 100, height: 100, x: 10, y: 10, icon: SaasIcon, bg:'', cardType:'rounded',
-    isedit:true,
-    data: {
-      workflowName:'',
-      steps:[]
-    }
+    id:'f1',
+    x: 0, 
+    y: 50,
+    name:'Type 1',
+    flowType:'flow',
   },
   { 
-    width: 100, height: 100, x: 120, y: 10, icon: NoCodeIcon, bg:'', cardType:'circle', 
-    isedit:true,
-    data: {
-      workflowName:'SASS',
-      steps:[
-        {
-          name:'testing',
-          type:'whatsapp' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-        },
-        {
-          name:'testing',
-          type:'sms' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-        }
-      ]
-    } 
+    id:'f2',
+    x: 100, 
+    y: 50,
+    name:'Type 2',
+    flowType:'flow'
+  },
+  { 
+    id:'f3',
+    x: 180, 
+    y: 50,
+    name:'Type 3',
+    flowType:'flow'
+  },
+  { 
+    id:'f4',
+    x: 180, 
+    y: 50,
+    name:'Type 4',
+    flowType:'flow'
+  },
+  { 
+    id:'f5',
+    x: 180, 
+    y: 50,
+    name:'Type 5',
+    flowType:'flow'
   }
 ]
 
-const layoutList = [
-    {
-      layoutName:'Layout 1',
-      list: [
-          { 
-            width: 100, height: 100, x: 10, y: 10, icon: SaasIcon, bg:'', cardType:'rounded',
-            disableDragging: true,
-            isedit:false,
-            data: {
-              workflowName:'sample',
-              steps:[
-                {
-                  name:'sample 22',
-                  type:'phone' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'sample 55',
-                  type:'whatsapp' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'sample 66',
-                  type:'erp' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-              ]
-            }
-          },
-          { 
-            width: 100, height: 100, x: 120, y: 10, icon: NoCodeIcon, bg:'', cardType:'circle', 
-            disableDragging: true,
-            isedit:false,
-            data: {
-              workflowName:'demo',
-              steps:[
-                {
-                  name:'testing 1',
-                  type:'email' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'testing 2',
-                  type:'phone' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'testing 3',
-                  type:'checkbox' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'testing 4',
-                  type:'phone' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'testing 5',
-                  type:'whatsapp' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'testing 6',
-                  type:'erp' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-              ]
-            } 
-          }
-        ]
-    }
+const conditionData = [
+  { 
+    id:'c1',
+    x: 0, 
+    y: 50,
+    name:'condition 1',
+    flowType:'logical',
+  },
+  { 
+    id:'c2',
+    x: 100, 
+    y: 50,
+    name:'condition 2',
+    flowType:'logical'
+  },
+  { 
+    id:'c3',
+    x: 180, 
+    y: 50,
+    name:'condition 3',
+    flowType:'logical'
+  },
+  { 
+    id:'c4',
+    x: 180, 
+    y: 50,
+    name:'condition 4',
+    flowType:'logical'
+  },
+  { 
+    id:'c5',
+    x: 180, 
+    y: 50,
+    name:'condition 5',
+    flowType:'logical'
+  }
 ]
 
-const labelStyle = {
-    fontSize:'14px',
-    marginBottom:'0',
-}
-
-const getIconImg = (cardType) => {
-  switch(cardType) {
-    case 'checkbox':
-      return checkboxIcon;
-    case 'whatsapp':
-      return whatsappIcon;
-    case 'sms':
-      return smsIcon;
-    case 'email':
-      return emailIcon;
-    case 'phone':
-      return phoneIcon;
-    case 'erp':
-      return erpIcon;
-    default:
-      return null;
+const servicesData = [
+  { 
+    id:'s1',
+    x: 0, 
+    y: 50,
+    name:'sms',
+    flowType:'alert',
+    icon: SmsIcon,
+  },
+  { 
+    id:'s2',
+    x: 100, 
+    y: 50,
+    name:'whatsApp',
+    flowType:'alert',
+    icon: WhatsappIcon,
+  },
+  { 
+    id:'s3',
+    x: 180, 
+    y: 50,
+    name:'email',
+    flowType:'alert',
+    icon: MailIcon,
+  },
+  { 
+    id:'s4',
+    x: 180, 
+    y: 50,
+    name:'notification',
+    flowType:'alert',
+    icon: NotificationIcon,
+  },
+  { 
+    id:'s5',
+    x: 180, 
+    y: 50,
+    name:'alert',
+    flowType:'alert',
+    icon: AlertIcon,
   }
-}
+]
 
-const WorkflowPage = () => {
-  const [workflowList, setWorkflowList] = useState([])
-  const [boundaryElm, setBoundaryElm] = useState()
-  const [cards, setCards] = useState([])
-  const [activeCard, setActiveCard] = useState(null)
-  const [priView, setPriView] = useState(null)
-  const [activeLayout, setActiveLayout] = useState(null)
-  const [previewMode, setPreviewMode] = useState(false)
-  const [activeStepIndex, setActiveStepIndex] = useState(-1); // Initialize with -1 to start with no active step
-  const handleRND = (index, data) => {
-    setCards(prevCards => {
-      return prevCards.map((item, i) => {
-        if (i === index) {
-          return { ...item, ...data };
-        }
-        return item;
-      });
-    });
-    // // Create a copy of the original array
-    // const updatedItems = [...cards];
-    // // Update the object with the new name
-    // updatedItems[index] = {x: d.x, y: d.y};
-    // // Update the state with the modified array
-    // setCards(updatedItems);
-  }
+const workflowList =[]
 
-  const isFillData = (dataList=[]) => {
-    dataList.every(item => {
-      const isWorkflowNameValid = item?.data?.workflowName?.trim() !== '';
-      const areStepsValid =  item?.data?.steps?.length && item?.data?.steps?.every(step => {
-        return step?.name?.trim() !== '' && step?.type?.trim() !== '';
-      });
-    
-      return isWorkflowNameValid && areStepsValid;
-    });
-  }
-
-  useEffect(() => {
-    localStorage
-    const data = [...dataList]
-    const layoutDataList = [...layoutList]
-    const dataLS = localStore.load('cardData')
-    const layoutDataListLS = localStore.load('layoutData')
-    if(dataLS){
-      setCards(dataLS)
-    }
-    if(layoutDataListLS){
-      setWorkflowList(layoutDataListLS)
-    }
-  }, [])
-  useEffect(() => {
-    localStore.add('cardData', cards)
-  }, [cards])
-
-  const hendleLayoutSave = () => {
-    const cardData = localStore.load('cardData') || []
-    const layoutDataListLS = localStore.load('layoutData') || []
-    let newData = []
-    if(activeLayout !== null){
-      newData = [...layoutDataListLS]
-      newData[activeLayout] = {
-        layoutName:'Layout',
-        list: [...cardData]
-       };
-    }else{      
-      newData = [...layoutDataListLS, {
-       layoutName:'Layout',
-       list: [...cardData]
-      }]
-      setCards([])
-    }
-    localStore.remove('cardData')
-    localStore.add('layoutData', newData)
-    setWorkflowList(newData)
-    alert('save successfully')
-  }
-
-  // useEffect(() => {
-  //   if(cards){
-
-  //   }
-  // }, [cards])
-
-  const addNewCard = () => {
-    setCards([...cards, 
-      { 
-        width: 70, 
-        height: 70, 
-        x: 10, 
-        y: 10, 
-        icon: '', 
-        bg:'', 
-        cardType:'none', 
-        disableDragging: false, 
-        isedit:true, 
-      }
-    ])
-  }
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if(file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setCards(prevCards => {
-          return prevCards.map((item, i) => {
-            if (i === activeCard) {
-              return { ...item, icon: e.target.result };
-            }
-            return item;
-          });
-        });
-      };
-      reader.readAsDataURL(file);
-    }
+const DraggableBox = ({ id, label, icon, position, nodesList, conditionsList, servicesList,  showRemove, handleRemove, handleAddNew, indexNo, handleDrag, itemData }) => { 
+  const [showDrop, setShowDrop] = useState(false)
+  const updateXarrow = (e, data) => {
+    console.log(e, 'eve', data, 'data')
+    handleDrag(data, itemData)
+    // useXarrow()
   };
-
-  const handleTypeCard = (value) => {
-    setCards(prevCards => {
-      return prevCards.map((item, i) => {
-        if (i === activeCard) {
-          return { ...item, cardType: value };
-        }
-        return item;
-      });
-    });
-  }
-  const handleBgChange = (value) => {
-    setCards(prevCards => {
-      return prevCards.map((item, i) => {
-        if (i === activeCard) {
-          return { ...item, bg: value };
-        }
-        return item;
-      });
-    });
-  }
-  const handleRemove = () => {
-    const updatedCards = [...cards];
-    updatedCards.splice(activeCard, 1);
-    setCards(updatedCards);
-  }
-  const handleCreateSteps = () => {
-    setCards(prevCards => {
-      return prevCards.map((item, i) => {
-        if (i === activeCard) {
-          return { ...item, data: {
-            workflowName: item?.data?.workflowName,
-              steps:[{
-                name:'',
-                type:''
-              }]
-          }};
-        }
-        return item;
-      });
-    });
-  }
-  const handleAddSteps = () => {
-    setCards(prevCards => {
-      return prevCards.map((item, i) => {
-        if (i === activeCard) {
-          return { ...item, data: {
-            workflowName: item?.data?.workflowName,
-              steps:[...item?.data?.steps, {
-                name:'',
-                type:''
-              }]
-          }};
-        }
-        return item;
-      });
-    });
-  }
-  
-  const handleWorkflowName = (value) => {
-    setCards(prevCards => {
-      return prevCards.map((item, i) => {
-        if(i === activeCard) {
-          return { ...item, data: {
-            ...item?.data,
-            workflowName: value,
-          }};
-        }
-        return item;
-      });
-    });
-  }
-
-  const handleWorkflowStepName = (value, indexNo) => {
-    const updatedData = { ...cards[activeCard]?.data };
-    updatedData.steps[indexNo].name = value;
-    setCards((prevCards) => {
-      return prevCards.map((item, i) => {
-        if (i === activeCard) {
-          return { ...item, data: updatedData };
-        }
-        return item;
-      });
-    });
-  }
-  const handleIconSelect = (value, indexNo) => {
-    const updatedData = { ...cards[activeCard]?.data };
-    updatedData.steps[indexNo].type = value;
-    setCards((prevCards) => {
-      return prevCards.map((item, i) => {
-        if (i === activeCard) {
-          return { ...item, data: updatedData };
-        }
-        return item;
-      });
-    });
-  }
-  const handleSubmit = event => {
-    event.preventDefault();
-    alert('Successfully Save')
-    // const updatedData = { ...cards[activeCard] };
-    // if(updatedData){
-    //   setWorkflowList([...workflowList, { name:'workflow', data: updatedData}])
-    //   handleRemove()
-    //   setActiveCard(null)
-    // }
-  };
-  const handelLayoutPreView = (item, ind) => {
-    const datalist = [...item?.list]
-    console.log(item?.list, 'item?.list')
-    setCards(datalist)
-    setActiveLayout(ind)
-    setPreviewMode(true)
-    setActiveCard(null)
-    setPriView('')
-  };
-
-  // const handelPalyPreview = item => {
-  //    // Start with the first step (index 0)
-  //    setActiveStepIndex(0);
-     
-  //   //  let regexPattern = /^-?[0-9]+$/;
-    
-  //   //  // check if the passed number is integer or float
-  //   //  let result = regexPattern.test(x);
-
-  //    // Use setInterval to change the active step every 2 seconds
-  //    const intervalId = setInterval(() => {
-  //      setActiveStepIndex((prevIndex) => {
-  //        const nextIndex = prevIndex + 1;
-  //        // If you reached the end of the steps, stop the interval
-  //        if (nextIndex >= cards[priView]?.data?.steps.length) {
-  //          clearInterval(intervalId);
-  //        }
-  //        return nextIndex;
-  //      });
-  //    }, 2000);
-  // };
-
-
-  const handelPalyPreview = (item) => {
-    // Start with the first step (index 0)
-    setActiveStepIndex(0);
-  
-    // Use setInterval to change the active step every 2 seconds
-    const intervalId = setInterval(() => {
-      setActiveStepIndex((prevIndex) => {
-        const nextIndex = prevIndex + 1;
-        const currentStep = cards[priView]?.data?.steps[prevIndex];
-  
-        // If you reached the end of the steps, stop the interval
-        if (nextIndex >= cards[priView]?.data?.steps?.length) {
-          clearInterval(intervalId);
-        } else if (currentStep.type === 'checkbox') {
-          // If the current step is a checkbox, show a modal
-          showCheckboxModal(currentStep, nextIndex);
-          // Pause the interval until the user interacts with the modal
-          clearInterval(intervalId);
-        }
-  
-        return nextIndex;
-      });
-    }, 2000);
-  };
-
-    // Function to show a modal for checkbox steps
-  const showCheckboxModal = (step, stepIndex) => {
-    // Display a modal with confirm and cancel buttons
-    var result = confirm("Press a button!");
-    if (result == true) {
-      setActiveStepIndex(stepIndex + 1);
-      handelPalyPreview()
-    } else {
-      setActiveStepIndex(stepIndex + 1);
-      handelPalyPreview()
-    }
-  };
-
   return (
-    <>
-      <section>
-        <div className="container-fluid">
-          <div className="row my-3">
-             <div className="col-lg-7">
-                <div className="row align-items-center">
-                  <div className="col-lg-7">
-                      {
-                        cards.length !== 0 && activeCard !== null ? 
-                          <div className="action d-flex justify-content-start align-items-center">
-                            <input className="form-control w-250 me-2" type="file" accept="image/*" onChange={handleImageChange} />
-                            {
-                              cards.length > 0 == !cards[activeCard]?.icon ? 
-                                <input type="color" className="form-control form-control-color me-2" onChange={(e) => handleBgChange(e.target.value)} value={ cards[activeCard]?.bg ? cards[activeCard]?.bg : "#fff"} />
-                              : null
-                            }
-                            <button onClick={() => handleTypeCard('none')} className="btn btn-primary rounded-0 icon-btn me-2" title={'Square Box'} >
-                                <img className='img-fluid' src={squareIcon} alt="" />
-                            </button>
-                            <button onClick={() => handleTypeCard('rounded')} className="btn btn-primary icon-btn me-2" title={'Rounded Box'}>
-                                <img className='img-fluid' src={roundedIcon} alt="" /> 
-                            </button>
-                            <button onClick={() => handleTypeCard('circle')} className="btn btn-primary rounded-circle icon-btn me-2" title={'Circle'} >
-                              <img className='img-fluid' src={circleIcon} alt="" /> 
-                            </button>
-                          </div>
-                        : null
-                      }
-                  </div>
-                  <div className="col-lg-5 text-end">
-                   <div className='d-flex justify-content-end'>
+    <Draggable bounds=".parent-element" defaultPosition={position} onDrag={updateXarrow} onStop={updateXarrow}>
+      <div id={id} style={{...boxStyle, padding: icon ? '2px' : "0 1rem" }}>
+        {
+          icon ? 
+            <img src={icon} style={{width:'26px'}} />
+          : label
+        }
+        {/* <button className="close-btn add-btn" onClick={() => setShowDrop(!showDrop)}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus-lg" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+          </svg>
+        </button> */}
+        <div className="dropdown">
+          <button className="close-btn add-btn" type="button" onClick={() => setShowDrop(!showDrop)}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+              </svg>
+          </button>
+          <div className={`dropdown-menu ${showDrop ? 'show': ''}`} sytle={{zIndex:'99999'}}>
+              <Accordion className="py-0 custom-accordion" defaultActiveKey="0">
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>Types</Accordion.Header>
+                  <Accordion.Body>
+                      <div className="diagram-list">
+                          {
+                            nodesList.map((row, i) => {
+                              return (<div className={`diagram-item border p-1 mb-2`} onClick={() => { 
+                                handleAddNew({...row, start:`${indexNo}`, end:``}) 
+                                setShowDrop(!showDrop)
+                              }}>
+                                      {row?.name}
+                                </div>)
+                            })
+                          }
+                      </div>
+                  </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item className="py-0" eventKey="1">
+                  <Accordion.Header>Condition</Accordion.Header>
+                  <Accordion.Body>
+                    <div className="diagram-list ">
                         {
-                          activeLayout !== null ? 
-                            <button onClick={() => {
-                              setActiveLayout(null)
-                              setCards([])
-                              setPreviewMode(!previewMode)
-                            }} className="btn btn-danger me-3 icon-btn" title="clear">
-                              <img className='img-fluid' src={clearIcon} alt="" />
-                            </button>
-                          : null
-                        }
-                        {
-                          cards?.length !== 0 && activeCard !== null ? 
-                            <button onClick={() => handleRemove()} className="btn btn-danger icon-btn me-3">
-                              <img className='img-fluid' src={removeIcon} alt="" />
-                            </button>
-                          : null
-                        }
-                        {
-                          activeLayout !== null ? 
-                            <button onClick={() => { 
-                              setPreviewMode(!previewMode)
-                              setActiveCard(null) 
-                              setPriView(null) 
-                              setActiveStepIndex(-1)
-                            }} 
-                            className="btn btn-warning me-3 icon-btn" title={previewMode ? 'Edit Mode' : 'Preview Mode'}>
-                              <img className='img-fluid' src={previewMode ? editIcon : preViewIcon} alt="" />
-                            </button>
-                          : null
-                        }                      
-                        <button onClick={() => addNewCard()} className="btn btn-primary icon-btn" title="add workflow">
-                            <img className='img-fluid' src={addIcon} alt="" />  
-                        </button> 
-                       
-                   </div>
-                  </div>
-                </div>
-             </div>
-             <div className="col-lg-5">
-                {
-                  cards?.length !== 0 && activeCard !== null ?
-                    <h4 className='text-center'>Define WorkFlow</h4>
-                  : null
-
-                }
-             </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-7">
-                <div
-                  style={{ 
-                    display:'block',
-                    background: "#eee",
-                    width: "100%",
-                    height: "70vh",
-                    border:'solid 1px #ccc',
-                    overflowX:'auto',
-                  }}
-                  ref={(elm) => setBoundaryElm(elm)}
-                >
-                    {
-                      cards && cards.map((row, ind) => {
-                        return(
-                          <WorkFlowRND 
-                            boundaryElm={boundaryElm}
-                            Id={ind}
-                            RND={row}
-                            SetRND={handleRND}
-                            activeCard={activeCard}
-                            setActiveCard={setActiveCard}
-                            priView={priView}
-                            setPriView={setPriView}
-                            previewMode={previewMode}
-                          />
-                        )
-                      })
-                    }
-                </div>
-            </div>
-            <div className="col-lg-3 mx-auto">
-                {
-                  !previewMode ?
-                    priView === null && cards?.length !== 0 && activeCard !== null ?
-                      <>
-                        <form onSubmit={handleSubmit} className='shadow p-3 mb-4 bg-body-tertiary rounded'>
-                            <div class="mb-3">
-                              <label for="workflowName" className="form-label" style={labelStyle} >Workflow Name</label>
-                              <input type="text" className="form-control form-control-sm" name={'workflowName'} id="workflowName" value={cards[activeCard]?.data?.workflowName} onChange={(e) => handleWorkflowName(e.target.value)}  placeholder="Workflow Name" required/>
-                            </div>
-                            <div class="mb-3">
-                              <label class="form-label" style={labelStyle} >Steps</label>
-                              {
-                                cards[activeCard]?.data?.steps === undefined || cards[activeCard]?.data?.steps?.length === 0 ? 
-                                  <div>
-                                    <button type="button" className="btn btn-outline-success  btn-sm px-5 mt-2" onClick={() => handleCreateSteps()} >Create Steps</button>
-                                  </div>
-                                : null 
-                              }
-                              <div className='step-cards'>
-                                  {
-                                    cards[activeCard]?.data?.steps?.map((item, i) => {
-                                      return( 
-                                        <div className='step-card mb-3 bg-light pt-1 pb-3 px-2' key={i}>
-                                            <input type="text" className="form-control form-control-sm mt-2" placeholder={`Name Step ${i+1}`} value={item?.name} onChange={(e) => handleWorkflowStepName(e.target.value, i)}  required/>
-                                            <div className='mt-1 d-flex justify-content-around'>
-                                                <div>
-                                                  <label className='icon-img'>
-                                                    <input type="radio" value="checkbox" name={`type_${i}`} checked={item?.type === 'checkbox'} onChange={(e) => handleIconSelect(e.target.value, i)}  required/>
-                                                    <img src={checkboxIcon} className='img-fluid' />
-                                                  </label>
-                                                </div>
-                                                <div>
-                                                  <label className='icon-img'>
-                                                    <input type="radio" value="whatsapp" name={`type_${i}`} checked={item?.type === 'whatsapp'} onChange={(e) => handleIconSelect(e.target.value, i)}  />
-                                                    <img src={whatsappIcon} className='img-fluid' />
-                                                  </label>
-                                                </div>                                
-                                                <div>
-                                                  <label className='icon-img'>
-                                                    <input type="radio" value="sms" name={`type_${i}`} checked={item?.type === 'sms'} onChange={(e) => handleIconSelect(e.target.value, i)}  />
-                                                    <img src={smsIcon} className='img-fluid' />
-                                                  </label>
-                                                </div>
-                                                <div>
-                                                  <label className='icon-img'>
-                                                    <input type="radio" value="email" name={`type_${i}`} checked={item?.type === 'email'} onChange={(e) => handleIconSelect(e.target.value, i)}  />
-                                                    <img src={emailIcon} className='img-fluid' />
-                                                  </label>
-                                                </div>
-                                                <div>
-                                                  <label className='icon-img'>
-                                                    <input type="radio" value="phone" name={`type_${i}`} checked={item?.type === 'phone'} onChange={(e) => handleIconSelect(e.target.value, i)}  />
-                                                    <img src={phoneIcon} className='img-fluid' />
-                                                  </label>
-                                                </div>
-                                                <div>
-                                                  <label className='icon-img'>
-                                                    <input type="radio" value="erp" name={`type_${i}`} checked={item?.type === 'erp'} onChange={(e) => handleIconSelect(e.target.value, i)}  />
-                                                    <img src={erpIcon} className='img-fluid' />
-                                                  </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        )                          
-                                    })
-                                  }
-                              </div>
-                            </div>
-                            <div class="mt-4 mb-3 d-flex justify-content-between">
-                                {
-                                  cards[activeCard]?.data?.steps !== undefined && cards[activeCard]?.data?.steps?.length > 0 ? 
-                                    <button type="button" className="btn btn-outline-success" onClick={() => handleAddSteps()} >Add Step</button>
-                                  : null
-                                }
-                                <button type="submit" className="btn btn-primary">Save</button>
-                            </div>
-                          </form>
-                      </>
-                    : null
-                  : previewMode && priView !== null && priView !== '' ? 
-                      <>
-                        <div className='shadow p-3 mb-4 bg-body-tertiary rounded'>
-                          <div className='step-cards-privew'>                          
-                              <div className='mb-3'>
-                                  Workflow Name : <b className='text-capitalize'>{cards[priView]?.data?.workflowName}</b>
-                              </div>
-                              <div id={'stepsList'}>
-                                  {
-                                      cards[priView]?.data?.steps?.map((item, i) => {
-                                        return( 
-                                            <div className='d-flex align-items-center'>
-                                              <div className={`preview ${i === activeStepIndex ? 'active' : ''}`}>
-                                                  {item?.name}
-                                              </div>
-                                              <div className='preview-icon'>
-                                                <div className="preview-icon-img">
-                                                    <img className='img-fluid' src={getIconImg(item?.type)} alt="" />
-                                                </div>
-                                              </div>
-                                            </div>
-                                        )                              
-                                      })
-                                  }
-                              </div>
-                              {
-                                cards[priView]?.data?.steps?.length > 0 ? 
-                                  <button onClick={() => handelPalyPreview()} className='playbtn btn btn-primary w-100 btn-sm'>
-                                    Play
-                                  </button>
-                                : <div className='text-danger text-center'>No Steps Available</div>
-                              }
-                          </div>
-                        </div>
-                        {
-                          activeStepIndex >= 0 && activeStepIndex <= cards[priView]?.data?.steps?.length -1 ? 
-                              <div className='d-flex mt-1'>
-                                  <div className="message-icon-img">
-                                      <img className='img-fluid' src={getIconImg(cards[priView]?.data?.steps[activeStepIndex]?.type)} alt="" />
-                                  </div>
-                                  <div className='ms-1'>{cards[priView]?.data?.steps[activeStepIndex]?.type} message sent</div>
-                              </div>
-                          : null
-                        }
-                      </>
-                    : null
-                }
-            </div>           
-          </div>
-          <div className="row">
-              <div className="col-lg-7">
-                <div className="row">
-                    {
-                      cards.length !== 0 ?
-                        <>
-                          <div className="col-6">
-                              <button className='btn btn-primary mt-3' onClick={() => hendleLayoutSave()}>{ activeLayout !== null ? 'Update' : 'Save'} Layout</button>
-                          </div>
-                          {/* <div className="col-6 d-flex justify-content-end">
-                              {
-                                activeLayout !== null ? 
-                                      <Link to={`/step/${activeLayout}/charts`} className='btn btn-primary mt-3 ms-3'>Next</Link>
-                                : null
-                              }
-                          </div> */}
-                        </>
-                      : null
-
-                    }
-                </div> 
-              </div>
-          </div>
-          <div className="row mb-5 mt-5">
-              <div className="col-lg-7">
-                  <div className="row">
-                      {
-                        workflowList && workflowList.map((item, i) => {
-                          return (<div className="col-lg-3 text-center">
-                                <div className={`layout-card bg-light py-3 ${ activeLayout === i ? 'acitve':''}`} onClick={() => handelLayoutPreView(item, i)}>
-                                    <div className="layout-img">
-                                        <img src={SerivcesIcon} alt="" />
-                                    </div>
-                                    <h6 className='mt-2'>{item?.layoutName} {i+1}</h6>
-                                </div>
-                            </div>)
+                          conditionsList.map((row, i) => {
+                            return (<div className={`diagram-item border p-1 mb-2`} onClick={() => { 
+                              handleAddNew({...row, start:`${indexNo}`, end:``}) 
+                              setShowDrop(!showDrop)
+                            }}>
+                                    {row?.name}
+                              </div>)
                           })
-                      }
-                  </div>
-              </div>
-              <div className="col-lg-3"></div>
+                        }
+                    </div>
+                  </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item className="py-0" eventKey="2">
+                  <Accordion.Header>Attributes</Accordion.Header>
+                  <Accordion.Body>
+                      <div className="diagram-list">
+                          <div className="arlerts-list d-flex flex-wrap">
+                              {
+                                servicesList?.map((row, ind) => {
+                                  return (
+                                    <div className="cloud-icon border d-flex justify-content-center me-2 mb-2" style={{ width: '30px', height:'30px', cursor:'pointer', padding:'3px' }} key={row?.id} onClick={() => { 
+                                      handleAddNew({...row, start:`${indexNo}`, end:``}) 
+                                      setShowDrop(!showDrop)
+                                    }}>
+                                      <img className="img-fluid" src={row?.icon} alt="" style={{ width: '30px' }} />
+                                    </div>
+                                  )
+                                })
+                              }
+                          </div>
+                      </div>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            {/* <li>
+              <a className="dropdown-item" href="#">Types</a>
+              {
+                 nodesList.map((row, i) => {
+                  return (
+                    <div className={`diagram-item border mb-2`} onClick={() => { 
+                        handleAddNew({...row, start:`${indexNo}`, end:``}) 
+                        setShowDrop(!showDrop)
+                      }}>
+                          {row?.name}
+                    </div>
+                    )
+                })
+              }
+            </li>
+            <li><a className="dropdown-item" href="#">Condition</a></li>
+            <li><a className="dropdown-item" href="#">Attributes</a></li> */}
           </div>
         </div>
-      </section>
-    </>
-  )
-}
+        {
+          showRemove ?
+            <button className="close-btn" onClick={() => handleRemove()}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-x" viewBox="0 0 16 16">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+              </svg>
+            </button>
+          : null
+        }
+      </div>
+    </Draggable>
+  );
+};
+
+const WorkflowPage = () => {
+  const [workflows, setWorkflows] = useState([])
+  const [nodes, setNodes] = useState([])
+  const [conditions, setConditions] = useState([])
+  const [services, setServices] = useState([])
+  const [selectedNodes, setSelectedNodes] = useState([])
+  const [activeLayout, setActiveLayout] = useState(null)
+
+  useEffect(() => {
+    const fData = [...flowData]
+    const sData = [...servicesData]
+    const cData = [...conditionData]
+    const dataWF = localStore.load('workflowData') || [...workflowList]
+    if(workflows){
+      setWorkflows(dataWF)
+    }
+    if(fData){
+      setNodes(fData)
+    }
+    if(sData){
+      setServices(sData)
+    }
+    if(cData){
+      setConditions(cData)
+    }
+  }, [])
+
+  const handleAddNew = (item) => {
+    setSelectedNodes([...selectedNodes, item])
+  }  
+  
+  const handleRemove = () => {
+    const removedData = [...selectedNodes]
+    removedData.pop()
+    setSelectedNodes(removedData)
+  }
+
+  const handleArrowDrag = (i, v) => {
+    console.log(i, v, 'D')
+  }
+
+  const handleArrowHeadDrag = (i, v) => {
+    console.log(i, v, 'H')
+  }
+
+  useEffect(() => {
+    if(activeLayout !== null){
+      hendleWorkFlowSave()
+    }
+  }, [selectedNodes])
+
+  const hendleWorkFlowSave = () => {
+    if(activeLayout === null){
+      const newWorkflow = { 
+        id:`w${workflows.length+1}`,
+        name:`Workflow ${workflows.length+1}`, 
+        data:[...selectedNodes],
+      }
+      const updatedData = [...workflows ,{...newWorkflow}]
+      setWorkflows([...updatedData])
+      localStore.add('workflowData', updatedData)
+      alert('save successfully')
+      setSelectedNodes([])
+    }else{
+      const updatedData = workflows.map((item) => item.id == activeLayout?.id ? activeLayout : item)
+      setWorkflows([...updatedData])
+      localStore.add('workflowData', updatedData)
+    }
+  }
+
+  const handelLayoutPreView = (item) => {
+    if(activeLayout === null && selectedNodes.length > 0){
+      var result = confirm("Are you sure you want to clear data !");
+      if(result == true) {
+        setActiveLayout(item)
+        const selectedNode = [...item?.data]
+        setSelectedNodes(selectedNode)
+      }
+    }else{
+      setActiveLayout(item)
+      const selectedNode = [...item?.data]
+      setSelectedNodes(selectedNode)      
+    }
+  };
+
+  const handleClear = () => {
+    var result = confirm("Are you sure you want to clear data !");
+    if(result == true) {
+      setActiveLayout(null)
+      setSelectedNodes([])
+    }
+  }
+  const handleDrag = (data, itemdata) => {
+    console.log(data, itemdata, 'console.log', 'selectedNodes', selectedNodes)
+    setSelectedNodes(prevCards => {
+      return prevCards.map((item, i) => {
+        if (itemdata?.id === item?.id) {
+          return { ...item, x: data?.x, y: data?.y,};
+        }
+        return item;
+      });
+    });
+  }
+  return (
+    <section>
+        <div className="container-fluid mt-5">            
+            <div className="row g-3">              
+              <div className="col-lg-8">                 
+                  <div className="postion-relative overflow-hidden">
+                      <div className="parent-element" style={{ display: "flex", width: "100%",  background:'#ccc', minHeight:'500px', overflow:'hidden' }}>                    
+                        <Xwrapper>
+                            {
+                              selectedNodes?.map((item, ind) => {
+                                return (<>                              
+                                      <DraggableBox 
+                                          id={`${item?.name}_${ind}`}
+                                          itemData={item}
+                                          handleRemove={handleRemove} 
+                                          handleAddNew={handleAddNew} 
+                                          handleDrag={handleDrag}
+                                          indexNo={`${item?.name}_${ind}`} 
+                                          nodesList={nodes} 
+                                          conditionsList={conditions} 
+                                          servicesList={services} 
+                                          showRemove={ind === selectedNodes.length-1} 
+                                          label={item?.name} 
+                                          icon={item?.icon} 
+                                          position={{x: item?.x, y: item?.x}}
+                                      />           
+                                      {
+                                        item?.start !== '' && item?.start !== undefined ? 
+                                            <Xarrow
+                                              end={`${item?.name}_${ind}`}
+                                              start={item?.start}
+                                              labels={''}
+                                              onDrag={(pos) => handleArrowDrag(index, pos)}
+                                              onArrowHeadDrag={(pos) => handleArrowHeadDrag(index, pos)}
+                                              // ref={(ref) => (arrowRefs.current[index] = ref)}
+                                            />
+                                        : selectedNodes.length !==1 && ind !== selectedNodes.length-1 ?
+                                            <Xarrow
+                                              end={`${selectedNodes[ind+1]?.name}_${ind+1}`}
+                                              start={`${item?.name}_${ind}`}
+                                              labels={''}
+                                              onDrag={(pos) => handleArrowDrag(index, pos)}
+                                              onArrowHeadDrag={(pos) => handleArrowHeadDrag(index, pos)}
+                                              // ref={(ref) => (arrowRefs.current[index] = ref)}
+                                            />
+                                        : null
+                                      }                 
+                                  </>)
+                                })
+                              }
+                          </Xwrapper>
+                      </div>
+                  </div>
+                  {
+                      selectedNodes.length > 0 ? 
+                        <>
+                          <button className='btn btn-sm btn-primary mt-2 me-4' onClick={() => hendleWorkFlowSave()}>{ activeLayout?.id ? 'Update' : 'Save'} Workflow</button>
+                          <button className='btn btn-sm btn-primary mt-2' onClick={() => handleClear()}>Clear</button>
+                        </>
+                      : null
+                    }
+              </div>
+              <div className="col-lg-2">
+                  <div className="node-list">
+                    <Accordion defaultActiveKey="0">
+                      <Accordion.Item eventKey="0">
+                        <Accordion.Header>Types</Accordion.Header>
+                        <Accordion.Body>
+                            <div className="diagram-list">
+                                {
+                                  nodes.map((row, i) => {
+                                    return (<div className={`diagram-item border p-2 mb-2`} onClick={() => handleAddNew(row)}>
+                                            {row?.name}
+                                      </div>)
+                                  })
+                                }
+                            </div>
+                        </Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="1">
+                        <Accordion.Header>Condition</Accordion.Header>
+                        <Accordion.Body>
+                          <div className="diagram-list ">
+                              {
+                                conditions.map((row, i) => {
+                                  return (<div className={`diagram-item border p-2 mb-2`} onClick={() => handleAddNew(row)}>
+                                          {row?.name}
+                                    </div>)
+                                })
+                              }
+                          </div>
+                        </Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="2">
+                        <Accordion.Header>Attributes</Accordion.Header>
+                        <Accordion.Body>
+                            <div className="diagram-list">
+                                <div className="arlerts-list d-flex flex-wrap">
+                                    {
+                                      services?.map((row, ind) => {
+                                        return (
+                                          <div className="cloud-icon border d-flex justify-content-center me-2" style={{ width: '30px', height:'30px', cursor:'pointer', padding:'3px' }} key={row?.id} onClick={() => handleAddNew(row)}>
+                                            <img className="img-fluid" src={row?.icon} alt="" style={{ width: '30px' }} />
+                                          </div>
+                                        )
+                                      })
+                                    }
+                                </div>
+                            </div>
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    </Accordion>
+                  </div>
+              </div>
+            </div>
+            <div className="row g-3">
+                <div className="col-lg-8 pt-3">
+                  <div className="row g-3">
+                      {
+                        workflows && workflows.map((item) => {
+                            return (
+                              <div className="col-lg-3 text-center">
+                                  <div className={`layout-card bg-light py-3 ${ activeLayout?.id === item?.id ? 'acitve':''}`} onClick={() => handelLayoutPreView(item)}>
+                                      <div className="layout-img">
+                                          {/* <img src={SerivcesIcon} alt="" /> */}
+                                      </div>
+                                      <h6 className='mt-2'>{item?.name}</h6>
+                                  </div>
+                              </div>
+                            )
+                        })
+                      }
+                  </div>
+                </div>
+                <div className="col-lg-2 pt-3"></div>
+            </div>
+        </div>
+    </section>
+  );
+};
 
 export default WorkflowPage;

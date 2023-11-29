@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import WorkflowPage from "./pages/WorkflowPage";
+import DashboardPage from "./pages/DashboardPage";
 import StepOnePage from "./pages/StepOnePage";
 import StepTwoPage from "./pages/StepTwoPage";
 import StepThreePage from "./pages/StepThreePage";
@@ -9,27 +9,27 @@ import StepFivePage from "./pages/StepFivePage";
 import StepSixPage from "./pages/StepSixPage";
 import StepSevenPage from "./pages/StepSevenPage";
 import SetpFlowPage from "./pages/SetpFlowPage";
-import SetpFlowPageCopy from "./pages/SetpFlowPageCopy";
+import WorkflowPage from "./pages/WorkflowPage";
 import SetpFlowPageTest from "./pages/SetpFlowPageTest";
-import DashboardPage from "./pages/DashboardPage";
+import Layout from "./pages/Layout";
 import RecipeFlowPage from "./pages/RecipeFlowPage";
 import BoydPage from "./pages/BoydPage";
 
 function App() {
   return (<Routes>
-        <Route path="/" element={<DashboardPage> <WorkflowPage /> </DashboardPage>} />
-        <Route path="/step/:layoutId/charts" element={<DashboardPage><StepOnePage /></DashboardPage> } />
-        <Route path="/step/:layoutId/templete" element={<DashboardPage><StepTwoPage /></DashboardPage>} />
-        <Route path="/step/:layoutId/cloud" element={<DashboardPage><StepThreePage /></DashboardPage>} />
-        <Route path="/step/:layoutId/alerts" element={<DashboardPage><StepFourPage /></DashboardPage>} />
-        <Route path="/step/:layoutId/users" element={<DashboardPage><StepFivePage /></DashboardPage>} />
-        <Route path="/step/:layoutId/diagram" element={<DashboardPage><StepSixPage /></DashboardPage>} />
-        <Route path="/step/:layoutId/libraries" element={<DashboardPage><StepSevenPage /></DashboardPage>} />
-        <Route path="/itinerary" element={<DashboardPage><SetpFlowPage /></DashboardPage>} />
-        <Route path="/workflow" element={<DashboardPage><SetpFlowPageCopy /></DashboardPage>} />
-        <Route path="/test" element={<DashboardPage><SetpFlowPageTest /></DashboardPage>} />
-        <Route path="/recipe" element={<DashboardPage><RecipeFlowPage /></DashboardPage>} />
-        <Route path="/boyd" element={<DashboardPage><BoydPage /></DashboardPage>} />
+        <Route path="/" element={<Layout> <DashboardPage /> </Layout>} />
+        <Route path="/step/:layoutId/charts" element={<Layout><StepOnePage /></Layout> } />
+        <Route path="/step/:layoutId/templete" element={<Layout><StepTwoPage /></Layout>} />
+        <Route path="/step/:layoutId/cloud" element={<Layout><StepThreePage /></Layout>} />
+        <Route path="/step/:layoutId/alerts" element={<Layout><StepFourPage /></Layout>} />
+        <Route path="/step/:layoutId/users" element={<Layout><StepFivePage /></Layout>} />
+        <Route path="/step/:layoutId/diagram" element={<Layout><StepSixPage /></Layout>} />
+        <Route path="/step/:layoutId/libraries" element={<Layout><StepSevenPage /></Layout>} />
+        <Route path="/itinerary" element={<Layout><SetpFlowPage /></Layout>} />
+        <Route path="/workflow" element={<Layout><WorkflowPage /></Layout>} />
+        <Route path="/test" element={<Layout><SetpFlowPageTest /></Layout>} />
+        <Route path="/recipe" element={<Layout><RecipeFlowPage /></Layout>} />
+        <Route path="/boyd" element={<Layout><BoydPage /></Layout>} />
  </Routes>
  )
 }
