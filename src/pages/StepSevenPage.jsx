@@ -59,9 +59,9 @@ const StepPage = () => {
     <>
       <section>
         <div className="container-fluid">  
-          <div className="row g-4 mt-3">
+          <div className="row g-4">
               <div className="col-lg-12">
-                <h3>Select libraries</h3>
+                <h3>Generate API</h3>
               </div>
               {
                 charts?.map((item, i) => {

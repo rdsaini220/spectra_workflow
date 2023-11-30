@@ -470,7 +470,7 @@ const WorkflowPage = () => {
     <>
       <section>
         <div className="container-fluid">
-          <div className="row my-3">
+          <div className="row mb-3">
              <div className="col-lg-7">
                 <div className="row align-items-center">
                   <div className="col-lg-7">
@@ -554,7 +554,7 @@ const WorkflowPage = () => {
                 <div
                   style={{ 
                     display:'block',
-                    background: "#eee",
+                    background: "#fafafa",
                     width: "100%",
                     height: "70vh",
                     border:'solid 1px #ccc',
@@ -735,6 +735,7 @@ const WorkflowPage = () => {
           </div>
           <div className="row mb-5 mt-5">
               <div className="col-lg-7">
+                  <h4 className='mb-3'>Work Space</h4>
                   <div className="row">
                       {
                         workflowList && workflowList.map((item, i) => {

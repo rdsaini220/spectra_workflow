@@ -378,7 +378,7 @@ const getIconImg = (cardType) => {
   }
 }
 
-const DashboardPage = () => {
+const ItineraryPage = () => {
   const [charts, setCharts] = useState([])
   const [chartsItem, setChartsItem] = useState({})
   const [chartSelected, setChartSelected] = useState({})
@@ -681,7 +681,7 @@ const DashboardPage = () => {
                 <div
                   style={{ 
                     display:'block',
-                    background: "#eee",
+                    background: "#fafafa",
                     width: "100%",
                     height: "70vh",
                     border:'solid 1px #ccc',
@@ -779,4 +779,4 @@ const DashboardPage = () => {
   )
 }
 
-export default DashboardPage;
+export default ItineraryPage;

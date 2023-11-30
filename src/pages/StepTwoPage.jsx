@@ -127,7 +127,7 @@ const StepPage = () => {
     <>
       <section>
         <div className="container-fluid">  
-          <div className="row g-4 mt-3">
+          <div className="row g-4">
               <div className="col-lg-12">
                 <h3>Select Your Templetes</h3>
               </div>

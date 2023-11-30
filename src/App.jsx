@@ -8,7 +8,7 @@ import StepFourPage from "./pages/StepFourPage";
 import StepFivePage from "./pages/StepFivePage";
 import StepSixPage from "./pages/StepSixPage";
 import StepSevenPage from "./pages/StepSevenPage";
-import SetpFlowPage from "./pages/SetpFlowPage";
+import ItineraryPage from "./pages/ItineraryPage";
 import WorkflowPage from "./pages/WorkflowPage";
 import WorkflowPage2 from "./pages/WorkflowPage2";
 import SetpFlowPageTest from "./pages/SetpFlowPageTest";
@@ -26,7 +26,7 @@ function App() {
         <Route path="/step/:layoutId/users" element={<Layout><StepFivePage /></Layout>} />
         <Route path="/step/:layoutId/diagram" element={<Layout><WorkflowPage2 /></Layout>} />
         <Route path="/step/:layoutId/libraries" element={<Layout><StepSevenPage /></Layout>} />
-        <Route path="/itinerary" element={<Layout><SetpFlowPage /></Layout>} />
+        <Route path="/itinerary" element={<Layout><ItineraryPage /></Layout>} />
         <Route path="/workflow" element={<Layout><WorkflowPage /></Layout>} />
         <Route path="/test" element={<Layout><SetpFlowPageTest /></Layout>} />
         <Route path="/recipe" element={<Layout><RecipeFlowPage /></Layout>} />

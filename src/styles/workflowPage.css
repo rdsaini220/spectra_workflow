@@ -49,7 +49,7 @@
     border: dashed 2px #f00;
 }
 .preview{
-    border: dashed 1px #ccc;
+    border: dashed 1px #fafafa;
     text-align: center;
     text-transform: capitalize;
     padding: 4px;
@@ -87,4 +87,11 @@
 .nav-link.active{
     padding-top: 0;
     padding-bottom: 0;
+}
+
+.active-link{
+    font-weight: 700;
+}
+.active-link span{
+    color: #0a58ca !important;
 }

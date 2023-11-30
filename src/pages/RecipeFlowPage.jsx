@@ -229,7 +229,7 @@ const RecipeFlowPage = () => {
                 <div
                   style={{ 
                     display:'block',
-                    background: "#eee",
+                    background: "#fafafa",
                     width: "100%",
                     height: "70vh",
                     border:'solid 1px #ccc',

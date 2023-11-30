@@ -437,7 +437,7 @@ const BoydPage = () => {
     <>
       <section>
         <div className="container-fluid">          
-          <div className="row mb-5 mt-5">
+          <div className="row mb-5">
               <div className="col-lg-7">
                   <div className="row">
                       {

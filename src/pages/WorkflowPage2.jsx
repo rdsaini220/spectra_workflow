@@ -374,7 +374,7 @@ const WorkflowPage2 = () => {
             <div className="row g-3">              
               <div className="col-lg-8">                 
                   <div className="postion-relative overflow-hidden">
-                      <div className="parent-element" style={{ display: "flex", width: "100%",  background:'#ccc', minHeight:'500px', overflow:'hidden' }}>                    
+                      <div className="parent-element" style={{ display: "flex", width: "100%",  background:'#fafafa', minHeight:'500px', overflow:'hidden' }}>                    
                         <Xwrapper>
                             {
                               selectedNodes?.map((item, ind) => {

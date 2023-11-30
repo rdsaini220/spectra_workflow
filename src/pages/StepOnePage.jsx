@@ -123,7 +123,7 @@ const StepPage = () => {
     <>
       <section>
         <div className="container-fluid">  
-          <div className="row g-2 mt-3">
+          <div className="row g-2">
               <div className="col-lg-12">
                 <h3>Select Your Charts</h3>
               </div>
