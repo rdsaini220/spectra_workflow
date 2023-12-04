@@ -70,7 +70,16 @@ function WorkFlowRND({ boundaryElm, RND, Id, SetRND, activeCard, setActiveCard, 
     >
       <input value={Id} onFocus={(e) => handleFocus(e.target.value)} style={{height:'100%', width:"100%"}} hidden/>
       <div style={{fontSize:'12px',lineHeight:'16px'}}>step : {Id+1}</div>
-      <span style={{fontSize:'16px',lineHeight:'20px', fontWeight:'600'}}>{RND?.name}</span>
+      <div className="d-flex align-items-center">
+        {
+          RND?.icon ? 
+            <div className="itm-img">
+                <img className='img-fluid' src={RND?.icon} alt="" />
+            </div>
+          : null
+        }
+        <span style={{fontSize:'16px',lineHeight:'20px', fontWeight:'600', marginLeft:'6px', marginTop:'8px'}}>{RND?.name}</span>
+      </div>
       {
         Id === noOfIndex-1 ? 
           <button className="btn cutom-btn" onClick={() => {

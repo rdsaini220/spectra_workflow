@@ -316,6 +316,19 @@ const WorkflowPage2 = () => {
     }
   }, [selectedNodes])
 
+  useEffect(() => {
+    const layoutDataListLS = localStore.load('layoutData') || []
+    if(layoutId && layoutDataListLS.length > 0){
+      const updatedLayoutData = {
+          ...layoutDataListLS[layoutId],
+          workflow: activeLayout,
+      };
+      const updatedLayoutDataListLS = [...layoutDataListLS];
+      updatedLayoutDataListLS[layoutId] = updatedLayoutData;
+      localStore.add('layoutData', updatedLayoutDataListLS)
+    } 
+  }, [activeLayout])
+
   const hendleWorkFlowSave = () => {
     if(activeLayout === null){
       const newWorkflow = { 
@@ -350,13 +363,6 @@ const WorkflowPage2 = () => {
     }
   };
 
-  const handleClear = () => {
-    var result = confirm("Are you sure you want to clear data !");
-    if(result == true) {
-      setActiveLayout(null)
-      setSelectedNodes([])
-    }
-  }
   const handleDrag = (data, itemdata) => {
     console.log(data, itemdata, 'console.log', 'selectedNodes', selectedNodes)
     setSelectedNodes(prevCards => {

@@ -13,52 +13,24 @@ import "../styles/StepsPage.css";
 
 const TempleteData = [
   { 
-    id:'a1',
-    width: 100, 
-    height: 100, 
-    x: 10, 
-    y: 10, 
+    id:'a1', 
     icon: AlertIcon, 
-    bg:'', 
     title:'Alerts',
-    // cardType:'rounded',
-    isedit:true,
   },
   { 
     id:'a2',
-    width: 100, 
-    height: 100, 
-    x: 10, 
-    y: 10, 
     icon: MailIcon, 
-    bg:'', 
     title:'Email',
-    // cardType:'rounded',
-    isedit:true,
   },
   { 
     id:'a3',
-    width: 100, 
-    height: 100, 
-    x: 10, 
-    y: 10, 
     icon: NotificationIcon, 
-    bg:'', 
     title:'SMS',
-    // cardType:'rounded',
-    isedit:true,
   },
   { 
     id:'a4',
-    width: 100, 
-    height: 100, 
-    x: 10, 
-    y: 10, 
     icon: SmsIcon, 
-    bg:'', 
     title:'Notification',
-    // cardType:'rounded',
-    isedit:true,
   }
 ]
 

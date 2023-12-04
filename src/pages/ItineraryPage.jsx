@@ -1,396 +1,100 @@
 import React, { useEffect, useState } from 'react'
 import DashboardRND from '../components/DashboardRND';
-import localStore from '../untils/localStore';
-
-import SaasIcon from "../assets/saas.png";
-import NoCodeIcon from "../assets/no-code.png";
-import SerivcesIcon from "../assets/serivces.png";
-import checkboxIcon from "../assets/icons/squareCheck.svg";
-import whatsappIcon from "../assets/icons/whatsapp.svg";
-import smsIcon from "../assets/icons/sms.svg";
-import emailIcon from "../assets/icons/email.svg";
-import phoneIcon from "../assets/icons/phone.svg";
-import erpIcon from "../assets/icons/erp.svg";
-import addIcon from "../assets/icons/add.svg";
-import editIcon from "../assets/icons/edit.svg";
-import removeIcon from "../assets/icons/remove.svg";
-import clearIcon from "../assets/icons/clear.svg";
-import preViewIcon from "../assets/icons/preView.svg";
-import roundedIcon from "../assets/icons/rounded.svg";
-import circleIcon from "../assets/icons/circle.svg";
-import squareIcon from "../assets/icons/square.svg";
-
 import "../styles/workflowPage.css";
 import "../styles/StepsPage.css";
 
-const itineraryList = [
-  { 
-    id:'i1',
-    title:'Incident Manager',
-    cards:[
-     {
-        name:'Trans card',
-        data: [{
-          width: 300, 
-          height: 50, 
-          x: 40, 
-          y: 15, 
-          name:'IM 1', 
-        },
-        {
-          width: 300, 
-          height: 50, 
-          x: 40, 
-          y: 80, 
-          name:'IM 2', 
-        },
-        {
-          width: 300, 
-          height: 50, 
-          x: 40, 
-          y: 140, 
-          name:'IM 3', 
-        },
-        {
-          width: 300, 
-          height: 50, 
-          x: 40, 
-          y: 205, 
-          name:'IM 4', 
-        },]
-     },
-     {
-      name:'Set Card',
-      data: [
-        {
-          width: 300, 
-          height: 50, 
-          x: 40, 
-          y: 15, 
-          name:'IMS 1', 
-        },
-        {
-          width: 300, 
-          height: 50, 
-          x: 40, 
-          y: 80, 
-          name:'IMS 2', 
-        },
-        {
-          width: 300, 
-          height: 50, 
-          x: 40, 
-          y: 140, 
-          name:'IMS 3', 
-        },
-        {
-          width: 300, 
-          height: 50, 
-          x: 40, 
-          y: 205, 
-          name:'IMS 4', 
-        },
-      ]
-   }
-    ],
-  },
-  { 
-    id:'i2',
-    title:'Maintienance engineer',
-    cards:[
+import MailIcon from "../assets/mail.png";
+import NotificationIcon from "../assets/notification.png";
+import PhoneIcon from "../assets/icons/phone.svg";
+import MapsIcon from "../assets/maps.png";
+import CrmIcon from "../assets/crm.png";
+
+
+const recipeList = [
+  {
+    id:'r1',
+    name:'Itinerary 1', 
+    data:[
       {
-         name:'Maintienance card',
-         data: [
-          {
-            width: 300, 
-            height: 100, 
-            x: 40, 
-            y: 15, 
-            name:'ME 1', 
-          },
-          {
-            width: 300, 
-            height: 100, 
-            x: 40, 
-            y: 130, 
-            name:'ME 2', 
-          },
-          {
-            width: 300, 
-            height: 100, 
-            x: 40, 
-            y: 240, 
-            name:'ME 3', 
-          },
-          {
-            width: 300, 
-            height: 100, 
-            x: 40, 
-            y: 350, 
-            name:'ME 4', 
-          }
-        ]
-      }
-     ],
-  },
-  { 
-    id:'i3',
-    title:'Service engineer',
-    cards:[
+        id:'a1',
+        name:'Message', 
+        icon:NotificationIcon,
+        width:300,
+        height:60,
+        x:20,
+        y:20
+      },
       {
-         name:'Service card',
-         data: [
-          {
-            width: 300, 
-            height: 50, 
-            x: 40, 
-            y: 15, 
-            name:'SE 1', 
-          },
-          {
-            width: 300, 
-            height: 50, 
-            x: 40, 
-            y: 80, 
-            name:'SE 2', 
-          },
-          {
-            width: 300, 
-            height: 50, 
-            x: 40, 
-            y: 140, 
-            name:'SE 3', 
-          },
-          {
-            width: 300, 
-            height: 50, 
-            x: 40, 
-            y: 205, 
-            name:'SE 4', 
-          }
-        ]
-      }
-     ],
-  },
-  { 
-    id:'i4',
-    title:'Operations Manager',
-    cards:[
-      {
-         name:'Manager card',
-         data: [
-          {
-            width: 300, 
-            height: 50, 
-            x: 40, 
-            y: 15, 
-            name:'MC 1', 
-          },
-          {
-            width: 300, 
-            height: 50, 
-            x: 40, 
-            y: 80, 
-            name:'MC 2', 
-          },
-          {
-            width: 300, 
-            height: 50, 
-            x: 40, 
-            y: 140, 
-            name:'MC 3', 
-          },
-          {
-            width: 300, 
-            height: 50, 
-            x: 40, 
-            y: 205, 
-            name:'MC 4', 
-          }
-        ]
-      }
-     ],
-  },
-  { 
-    id:'i5',
-    title:'Operation Field engineer',
-    cards:[
-      {
-         name:'Operation card',
-         data: [
-          {
-            width: 300, 
-            height: 50, 
-            x: 40, 
-            y: 15, 
-            name:'OC 1', 
-          },
-          {
-            width: 300, 
-            height: 50, 
-            x: 40, 
-            y: 80, 
-            name:'OC 2', 
-          },
-          {
-            width: 300, 
-            height: 50, 
-            x: 40, 
-            y: 140, 
-            name:'OC 3', 
-          },
-          {
-            width: 300, 
-            height: 50, 
-            x: 40, 
-            y: 205, 
-            name:'OC 4', 
-          }
-        ]
-      }
-     ],
+        id:'a2',
+        name:'call',
+        icon:PhoneIcon, 
+        width:300,
+        height:60,
+        x:20,
+        y:90
+      },
+    ]
   },
 ]
 
 const dataList = [
   {
+    id:'c1',
     width: 300, 
-    height: 50, 
+    height: 60, 
     x: 20, 
     y: 5, 
     name:'Message', 
+    icon:NotificationIcon,
   },
   {
+    id:'c2',
     width: 300, 
-    height: 50, 
+    height: 60, 
     x: 20, 
     y: 5,
     name:'Call', 
+    icon:PhoneIcon,
   },
   {
+    id:'c3',
     width: 300, 
-    height: 50, 
+    height: 60, 
     x: 20, 
     y: 5, 
     name:'Route Map/ETA', 
+    icon:MapsIcon,
   },
   {
+    id:'c4',
     width: 300, 
-    height: 50, 
+    height: 60, 
     x: 20, 
     y: 5, 
     name:'Mail', 
+    icon:MailIcon,
   },
   {
+    id:'c5',
     width: 300, 
-    height: 50, 
+    height: 60, 
     x: 20, 
     y: 5,
-    name:'CRM Integration', 
+    name:'CRM Integration',
+    icon:CrmIcon, 
   }
 ]
-
-const dashboardList = [
-    {
-      layoutName:'Layout 1',
-      list: [
-          { 
-            width: 100, height: 100, x: 10, y: 10, icon: SaasIcon, bg:'', cardType:'rounded',
-            disableDragging: true,
-            isedit:false,
-            data: {
-              workflowName:'sample',
-              steps:[
-                {
-                  name:'sample 22',
-                  type:'phone' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'sample 55',
-                  type:'whatsapp' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'sample 66',
-                  type:'erp' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-              ]
-            }
-          },
-          { 
-            width: 100, height: 100, x: 120, y: 10, icon: NoCodeIcon, bg:'', cardType:'circle', 
-            disableDragging: true,
-            isedit:false,
-            data: {
-              workflowName:'demo',
-              steps:[
-                {
-                  name:'testing 1',
-                  type:'email' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'testing 2',
-                  type:'phone' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'testing 3',
-                  type:'checkbox' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'testing 4',
-                  type:'phone' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'testing 5',
-                  type:'whatsapp' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-                {
-                  name:'testing 6',
-                  type:'erp' // checkbox, whatsapp, sms, email, phone,  crm/erp integration
-                },
-              ]
-            } 
-          }
-        ]
-    }
-]
-
-const labelStyle = {
-    fontSize:'14px',
-    marginBottom:'0',
-}
-
-const getIconImg = (cardType) => {
-  switch(cardType) {
-    case 'checkbox':
-      return checkboxIcon;
-    case 'whatsapp':
-      return whatsappIcon;
-    case 'sms':
-      return smsIcon;
-    case 'email':
-      return emailIcon;
-    case 'phone':
-      return phoneIcon;
-    case 'erp':
-      return erpIcon;
-    default:
-      return null;
-  }
-}
 
 const ItineraryPage = () => {
-  const [charts, setCharts] = useState([])
-  const [chartsItem, setChartsItem] = useState({})
-  const [chartSelected, setChartSelected] = useState({})
-  const [chartsData, setChartData] = useState([])
-  const [workflowList, setWorkflowList] = useState([])
-  const [boundaryElm, setBoundaryElm] = useState()
+  const [alertsData, setAlertsData] = useState([])
+  const [recipeData, setRecipeData] = useState([])
+  const [activeLayout, setActiveLayout] = useState(null)
   const [cards, setCards] = useState([])
+  const [boundaryElm, setBoundaryElm] = useState()
   const [activeCard, setActiveCard] = useState(null)
   const [priView, setPriView] = useState(null)
-  const [activeLayout, setActiveLayout] = useState(null)
   const [previewMode, setPreviewMode] = useState(false)
-  const [activeStepIndex, setActiveStepIndex] = useState(-1); // Initialize with -1 to start with no active step
+
   const handleRND = (index, data) => {
     setCards(prevCards => {
       return prevCards.map((item, i) => {
@@ -402,105 +106,74 @@ const ItineraryPage = () => {
     });
   }
 
-  const isFillData = (dataList=[]) => {
-    dataList.every(item => {
-      const isWorkflowNameValid = item?.data?.workflowName?.trim() !== '';
-      const areStepsValid =  item?.data?.steps?.length && item?.data?.steps?.every(step => {
-        return step?.name?.trim() !== '' && step?.type?.trim() !== '';
-      });
-    
-      return isWorkflowNameValid && areStepsValid;
-    });
-  }
-
   useEffect(() => {
-    const dataLS = [...itineraryList]
-    const layoutDataListLS = localStore.load('dashboardData')
+    const dataLS = [...recipeList]
     if(dataLS){
-      setCharts(dataLS)
+      setRecipeData(dataLS)
     }
     const dl = [...dataList]
     if(dl){
-      setChartData(dl)
-    }
-    if(layoutDataListLS){
-      setWorkflowList(layoutDataListLS)
+      setAlertsData(dl)
     }
   }, [])
 
-  const hendleLayoutSave = () => {
-    const cardData = localStore.load('cardData') || []
-    const layoutDataListLS = localStore.load('layoutData') || []
-    let newData = []
-    if(activeLayout !== null){
-      newData = [...layoutDataListLS]
-      newData[activeLayout] = {
-        layoutName:'Layout',
-        list: [...cardData]
-       };
-    }else{      
-      newData = [...layoutDataListLS, {
-       layoutName:'Layout',
-       list: [...cardData]
-      }]
-      setCards([])
-    }
-    localStore.remove('cardData')
-    localStore.add('layoutData', newData)
-    setWorkflowList(newData)
-    alert('save successfully')
+  const CreateAlerts = () => {
+    setAlertsData([...alertsData, { 
+      id:`a${alertsData.length+1}`,
+      name:`Component ${alertsData.length+1}`,
+      width:300,
+      height:50,
+      x:15,
+      y:10
+    }])
   }
 
-  const hangleChartSelected = (item) => {
-    setChartSelected(item)
-    setChartsItem({})
+  const RecipeAlerts = () => {
+    const newRecipe = { 
+      id:`r${recipeData.length+1}`,
+      name:`Itinerary ${recipeData.length+1}`, 
+      data:[],
+    }
+    setRecipeData([...recipeData, {...newRecipe}])
+    handelLayoutPreView(newRecipe)
+  }
+
+  useEffect(() => {
+    setActiveLayout({...activeLayout, data: [...cards]})
+  }, [cards])
+
+  const handelLayoutPreView = (item) => {
+    const data_list = [...item?.data]
+    setCards(data_list)
+    setActiveLayout(item)
+  }
+  
+  const handleRecipe = () => {    
+    const Rdata = activeLayout?.data
+    setRecipeData((prev) => {
+      return prev.map((item, i) => {
+        if(activeLayout?.id === item?.id) {
+          return { ...item, data: [...Rdata]};
+        }
+        return item;
+      });
+    })
+    alert('Update successfully')
+    setActiveLayout(null)
     setCards([])
   }
-
-  const hangleChartSelectedDataCard = (item) => {
-    const itemdata = [...item?.data] 
-    setChartsItem(item)
-    setCards(itemdata)
+  
+  const removeRecipe = () => {
+    const updatedCards = [...recipeData];
+    updatedCards.splice(activeCard, 1);
+    setRecipeData(updatedCards);
   }
 
-  const addNewCard = (item) => {
-    const itemdata = [...cards, item] 
-    setCards(itemdata)
+  const removeAlerts = () => {
+    const updatedCards = [...alertsData];
+    updatedCards.splice(activeCard, 1);
+    setAlertsData(updatedCards);
   }
-
-  const handleSave = () => {
-    if(Object.keys(chartSelected).length){
-      const cardsData = [...cards]
-      let updatedChartSelected = {...chartSelected}
-      let updatedCards = []
-      if(Object.keys(chartsItem).length){
-        updatedCards =  updatedChartSelected?.cards.map((item, i) => {
-          if (item.name === chartsItem.name) {
-            return { ...item, data: cardsData };
-          }
-          return item;
-        })
-      }else{
-        updatedCards = [...updatedChartSelected?.cards, {
-          name:`New card ${updatedChartSelected?.cards?.length + 1}`,
-          data: cardsData,
-        }]
-      }
-      updatedChartSelected.cards = updatedCards
-      setChartSelected(updatedChartSelected)
-      setCharts(prevCards => {
-        return prevCards.map((item, i) => {
-          if(item.id === updatedChartSelected.id) {
-            return {...updatedChartSelected};
-          }
-          return item;
-        });
-      });
-      if(Object.keys(chartsItem).length === 0){
-          setCards([])
-      }
-    }
-  }  
 
   const removeCard = () => {
     const updatedCards = [...cards];
@@ -508,176 +181,29 @@ const ItineraryPage = () => {
     setCards(updatedCards);
   }
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if(file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setCards(prevCards => {
-          return prevCards.map((item, i) => {
-            if (i === activeCard) {
-              return { ...item, icon: e.target.result };
-            }
-            return item;
-          });
-        });
-      };
-      reader.readAsDataURL(file);
-    }
+  const addNewCard = (item) => {
+    const itemdata = [...cards, item] 
+    setCards(itemdata)
   }
-  const handleTypeCard = (value) => {
-    setCards(prevCards => {
-      return prevCards.map((item, i) => {
-        if (i === activeCard) {
-          return { ...item, cardType: value };
-        }
-        return item;
-      });
-    });
-  }
-  const handleBgChange = (value) => {
-    setCards(prevCards => {
-      return prevCards.map((item, i) => {
-        if (i === activeCard) {
-          return { ...item, bg: value };
-        }
-        return item;
-      });
-    });
-  }
-  const handleCreateSteps = () => {
-    setCards(prevCards => {
-      return prevCards.map((item, i) => {
-        if (i === activeCard) {
-          return { ...item, data: {
-            workflowName: item?.data?.workflowName,
-              steps:[{
-                name:'',
-                type:''
-              }]
-          }};
-        }
-        return item;
-      });
-    });
-  }
-  const handleAddSteps = () => {
-    setCards(prevCards => {
-      return prevCards.map((item, i) => {
-        if (i === activeCard) {
-          return { ...item, data: {
-            workflowName: item?.data?.workflowName,
-              steps:[...item?.data?.steps, {
-                name:'',
-                type:''
-              }]
-          }};
-        }
-        return item;
-      });
-    });
-  }  
-  const handleWorkflowName = (value) => {
-    setCards(prevCards => {
-      return prevCards.map((item, i) => {
-        if(i === activeCard) {
-          return { ...item, data: {
-            ...item?.data,
-            workflowName: value,
-          }};
-        }
-        return item;
-      });
-    });
-  }
-  const handleWorkflowStepName = (value, indexNo) => {
-    const updatedData = { ...cards[activeCard]?.data };
-    updatedData.steps[indexNo].name = value;
-    setCards((prevCards) => {
-      return prevCards.map((item, i) => {
-        if (i === activeCard) {
-          return { ...item, data: updatedData };
-        }
-        return item;
-      });
-    });
-  }
-  const handleIconSelect = (value, indexNo) => {
-    const updatedData = { ...cards[activeCard]?.data };
-    updatedData.steps[indexNo].type = value;
-    setCards((prevCards) => {
-      return prevCards.map((item, i) => {
-        if (i === activeCard) {
-          return { ...item, data: updatedData };
-        }
-        return item;
-      });
-    });
-  }
-  const handelLayoutPreView = (item, ind) => {
-    const datalist = [...item?.list]
-    console.log(item?.list, 'item?.list')
-    setCards(datalist)
-    setActiveLayout(ind)
-    setPreviewMode(true)
-    setActiveCard(null)
-    setPriView('')
-  }
-  const handelPalyPreview = (item) => {
-    // Start with the first step (index 0)
-    setActiveStepIndex(0);
-  
-    // Use setInterval to change the active step every 2 seconds
-    const intervalId = setInterval(() => {
-      setActiveStepIndex((prevIndex) => {
-        const nextIndex = prevIndex + 1;
-        const currentStep = cards[priView]?.data?.steps[prevIndex];
-  
-        // If you reached the end of the steps, stop the interval
-        if (nextIndex >= cards[priView]?.data?.steps?.length) {
-          clearInterval(intervalId);
-        } else if (currentStep.type === 'checkbox') {
-          // If the current step is a checkbox, show a modal
-          showCheckboxModal(currentStep, nextIndex);
-          // Pause the interval until the user interacts with the modal
-          clearInterval(intervalId);
-        }
-  
-        return nextIndex;
-      });
-    }, 2000);
-  }
-  // Function to show a modal for checkbox steps
-  const showCheckboxModal = (step, stepIndex) => {
-    // Display a modal with confirm and cancel buttons
-    var result = confirm("Press a button!");
-    if (result == true) {
-      setActiveStepIndex(stepIndex + 1);
-      handelPalyPreview()
-    } else {
-      setActiveStepIndex(stepIndex + 1);
-      handelPalyPreview()
-    }
-  }
+
   return (
     <>
       <section>
         <div className="container-fluid">          
-          <div className="row g-4 mt-3">
-            <div className="col-lg-2">
-               <div className='preCard'>
-                  {
-                    charts.map((item, i) => {
-                      return (
-                        <div className={`border d-flex flex-wrap justify-content-center mb-3 text-center ${item.title == chartSelected.title ? 'selected' : ''}`} key={i} onClick={() => hangleChartSelected(item)}>
-                            {item?.title}
-                        </div>
-                      )
-                    })
-                  }
-               </div>
-            </div>            
-            <div className="col-lg-5">                 
+          <div className="row g-4">                                          
+            <div className="col-lg-6">    
+                <div className="row">
+                  <div className="col-lg-6 mb-3">                      
+                      <button className='btn btn-sm btn-primary' onClick={() => RecipeAlerts()}>Itinerary Recipe</button>                       
+                  </div>  
+                  <div className="col-lg-6 d-flex justify-content-end mb-3">    
+                        {
+                          activeLayout?.id ? 
+                            <button className='btn btn-sm btn-success' onClick={() => handleRecipe()}>Update Itinerary</button>
+                          : null
+                        }                                        
+                  </div>  
+                </div>             
                 <div
                   style={{ 
                     display:'block',
@@ -708,70 +234,59 @@ const ItineraryPage = () => {
                         )
                       })
                     }
-                </div>   
-                {
-                    cards.length > 0 ?                     
-                      <div className='d-flex justify-content-end mt-2'>
-                        <button className='btn btn-primary' onClick={() => handleSave()}>Save</button>
-                      </div>
-                    : null
-                }             
+                </div>                  
             </div>
-            {
-               Object.keys(chartSelected).length > 0 ? <>              
-                <div className="col-lg-2">
-                  <h5 className='mb-3'>Components</h5>
-                  <div className='preCard'>
-                      {
-                        chartsData.map((item, i) => {
-                          return (
-                            <div type="button" className='border d-flex justify-content-start mb-3 text-left px-2' disabled={Object.keys(chartSelected).length === 0} key={i} onClick={() => addNewCard(item)}>
+            <div className="col-lg-4">
+                <div className="row mb-3 d-flex align-items-center">
+                  <div className="col-12">
+                      <h4>Components</h4>
+                  </div>
+                </div>
+                <div className="row g-4">
+                    {
+                      alertsData.map((item, i) => {
+                        return (
+                          <div className="col-lg-6">
+                              <button className="btn border w-100 text-center" disabled={!activeLayout?.id} onClick={() => addNewCard(item)}>
+                                <div type="button" className='it-img p-2 mx-auto' key={i}>
+                                    <img className='img-fluid' src={item?.icon} alt="" />
+                                </div>
                                 {item?.name}
-                            </div>
-                          )
-                        })
-                      }
+                              </button>
+                          </div>
+                        )
+                      })
+                    }
+                </div>
+            </div>
+            <div className="col-lg-12 mt-5">
+                <div className="row mb-2">
+                  <div className="col-12">
+                      <h4>Itineraries</h4>
                   </div>
                 </div>
-                <div className="col-lg-3">
-                  <div className='row preCard'>
-                      <div className="col-12">
-                          <h5 className='mb-3'>Layouts</h5>
-                      </div>
-                      {
-                        Object.keys(chartSelected).length > 0 ? chartSelected?.cards?.map((item, i) => {
-                          return (
-                            <div className='col-lg-6'>
-                                <div className={`border d-flex justify-content-center mb-3 text-center p-4 ${item.name == chartsItem.name ? 'selected' : ''}`} key={i} onClick={() => hangleChartSelectedDataCard(item)}>
-                                    {item?.name}
-                                </div>
-                            </div>
-                          )
-                        }) : <div style={{fontSize:'12px'}}>Not Selected...</div>
-                      }
-                  </div>
+                <div className="row g-3">
+                    {
+                      recipeData && recipeData.map((item, i) => {
+                        return (<div className="col-lg-3">
+                              <div className={`layout-card position-relative bg-light px-3 py-2 ${ activeLayout?.id === item?.id ? 'acitve':''}`} onClick={() => handelLayoutPreView(item)}>
+                                  <span style={{fontSize:'10px'}}>Itinerary {i+1}</span>
+                                  <h6>{item?.name}</h6>
+                                  {
+                                    recipeData.length === i+1 ? 
+                                      <button className="btn cutom-btn" onClick={() => {
+                                        removeRecipe()
+                                      }}>
+                                          <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" height="1em" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                                      </button>
+                                    : null
+                                  }
+                              </div>
+                          </div>)
+                      })
+                    }
                 </div>
-              </> : null
-            }
-          </div>
-          <div className="row mb-5 mt-5">
-              <div className="col-lg-7">
-                  <div className="row">
-                      {
-                        workflowList && workflowList.map((item, i) => {
-                          return (<div className="col-lg-2 text-center">
-                                <div className={`layout-card bg-light py-3 ${ activeLayout === i ? 'acitve':''}`} onClick={() => handelLayoutPreView(item, i)}>
-                                    <div className="layout-img">
-                                        <img src={SerivcesIcon} alt="" />
-                                    </div>
-                                    <h6 className='mt-2'>{item?.layoutName} {i+1}</h6>
-                                </div>
-                            </div>)
-                          })
-                      }
-                  </div>
-              </div>
-              <div className="col-lg-3"></div>
+            </div>    
           </div>
         </div>
       </section>

@@ -12,75 +12,33 @@ import "../styles/StepsPage.css";
 const chartData = [
   { 
     id:'c1',
-    width: 100, 
-    height: 100, 
-    x: 10, 
-    y: 10, 
     icon: SaasIcon, 
-    bg:'', 
     title:'chart 1',
-    // cardType:'rounded',
-    isedit:true,
   },
   { 
     id:'c2',
-    width: 100, 
-    height: 100, 
-    x: 10, 
-    y: 10, 
     icon: NoCodeIcon, 
-    bg:'', 
     title:'chart 2',
-    // cardType:'rounded',
-    isedit:true,
   },
   { 
     id:'c3',
-    width: 100, 
-    height: 100, 
-    x: 10, 
-    y: 10, 
-    icon: SaasIcon, 
-    bg:'', 
+    icon: SaasIcon,
     title:'chart 3',
-    // cardType:'rounded',
-    isedit:true,
   },
   { 
     id:'c4',
-    width: 100, 
-    height: 100, 
-    x: 10, 
-    y: 10, 
     icon: NoCodeIcon, 
-    bg:'', 
     title:'chart 4',
-    // cardType:'rounded',
-    isedit:true,
   },
   { 
     id:'c5',
-    width: 100, 
-    height: 100, 
-    x: 10, 
-    y: 10, 
     icon: SaasIcon, 
-    bg:'', 
     title:'chart 5',
-    // cardType:'rounded',
-    isedit:true,
   },
   { 
     id:'c6',
-    width: 100, 
-    height: 100, 
-    x: 10, 
-    y: 10, 
     icon: NoCodeIcon, 
-    bg:'', 
     title:'chart 6',
-    // cardType:'rounded',
-    isedit:true,
   },
 ]
 
@@ -106,6 +64,7 @@ const StepPage = () => {
       };
       const updatedLayoutDataListLS = [...layoutDataListLS];
       updatedLayoutDataListLS[layoutId] = updatedLayoutData;
+      localStore.add('layoutData', updatedLayoutDataListLS)
     } 
   }, [chartList])
 

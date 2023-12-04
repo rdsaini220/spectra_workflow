@@ -95,3 +95,12 @@
 .active-link span{
     color: #0a58ca !important;
 }
+
+.it-img{
+    width: 70px;
+    height: 70px;
+}
+.itm-img{
+    width: 20px;
+    height: 20px;
+}

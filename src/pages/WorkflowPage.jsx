@@ -355,7 +355,6 @@ const WorkflowPage = () => {
     }
   }
   const handleDrag = (data, itemdata) => {
-    console.log(data, itemdata, 'console.log', 'selectedNodes', selectedNodes)
     setSelectedNodes(prevCards => {
       return prevCards.map((item, i) => {
         if (itemdata?.id === item?.id) {
@@ -368,7 +367,10 @@ const WorkflowPage = () => {
   return (
     <section>
         <div className="container-fluid">            
-            <div className="row g-3">              
+            <div className="row g-3"> 
+              <div className="col-lg-12">
+                <h3>Create Workflow for your activities</h3>
+              </div>             
               <div className="col-lg-8">                 
                   <div className="postion-relative overflow-hidden">
                       <div className="parent-element" style={{ display: "flex", width: "100%",  background:'#fafafa', minHeight:'500px', overflow:'hidden' }}>                    

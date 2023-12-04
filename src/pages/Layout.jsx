@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom';
+import localStore from '../untils/localStore';
+
 
 import "../styles/workflowPage.css";
 
 const DashboardPage = ({ children }) => {
+    const [open, setOpen] = useState(false);
     const location = useLocation()
     const pathName = location?.pathname
   return (
@@ -23,32 +26,34 @@ const DashboardPage = ({ children }) => {
                                 <Link to="/boyd" className={`nav-link px-0 align-middle ${pathName === '/boyd' ? 'active-link': null }`}>
                                     <i className="fs-4 bi-table"></i> <span className="ms-1 d-none d-sm-inline text-dark px-2">BOYD</span>
                                 </Link>
-                            </li>                            
+                            </li>                           
                             <li>
-                                <a className='nav-link px-0 align-middle' href="">
-                                    <i className="fs-4 bi-table"></i> <b className="ms-1 d-none d-sm-inline text-dark px-2">Template Settings</b>
+                                <a href="#" data-bs-toggle="collapse" class="nav-link dropdown-toggle text-dark px-0 align-middle " onClick={() => setOpen(!open)}>
+                                    <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline text-dark px-2">Templete Setting</span> 
                                 </a>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/" className={`nav-link px-0 align-middle ${pathName === '/' ? 'active-link': null }`}>
-                                    <i className="fs-4 bi-house"></i> <span className="ms-1 d-none d-sm-inline text-dark px-2">Layout</span>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/workflow" className={`nav-link px-0 align-middle ${pathName === '/workflow' ? 'active-link': null }`}>
-                                    <i className="fs-4 bi-table"></i> <span className="ms-1 d-none d-sm-inline text-dark px-2">Workflow</span>
-                                </Link>
-                            </li>  
-                            <li>
-                                <Link to="/itinerary" className={`nav-link px-0 align-middle ${pathName === '/itinerary' ? 'active-link': null }`}>
-                                    <i className="fs-4 bi-table"></i> <span className="ms-1 d-none d-sm-inline text-dark px-2">Itinerary</span>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/recipe" className={`nav-link px-0 align-middle ${pathName === '/recipe' ? 'active-link': null }`}>
-                                    <i className="fs-4 bi-table"></i> <span className="ms-1 d-none d-sm-inline text-dark px-2">Recipe</span>
-                                </Link>
-                            </li>                                                      
+                                <ul className={`collapse nav flex-column ms-1 ${open ? 'show' : ''}`} data-bs-parent="#menu">
+                                    <li >
+                                        <Link to="/" className={`dropdown-item nav-link px-0 align-middle ${pathName === '/' ? 'active-link': null }`}>
+                                            <i className="fs-4 bi-house"></i> <span className="ms-2 d-none d-sm-inline text-dark px-2">Layout</span>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/workflow" className={`dropdown-item nav-link px-0 align-middle ${pathName === '/workflow' ? 'active-link': null }`}>
+                                            <i className="fs-4 bi-table"></i> <span className="ms-2 d-none d-sm-inline text-dark px-2">Workflow</span>
+                                        </Link>
+                                    </li>  
+                                    <li>
+                                        <Link to="/itinerary" className={`dropdown-item nav-link px-0 align-middle ${pathName === '/itinerary' ? 'active-link': null }`}>
+                                            <i className="fs-4 bi-table"></i> <span className="ms-2 d-none d-sm-inline text-dark px-2">Itinerary</span>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/recipe" className={`dropdown-item nav-link px-0 align-middle ${pathName === '/recipe' ? 'active-link': null }`}>
+                                            <i className="fs-4 bi-table"></i> <span className="ms-2 d-none d-sm-inline text-dark px-2">Recipe</span>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </li>                                                   
                         </ul>
                     </div>
                 </div>
